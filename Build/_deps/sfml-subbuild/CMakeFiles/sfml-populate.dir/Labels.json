@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/CMakeFiles/sfml-populate"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/CMakeFiles/12bc4b7a654a25c99b925dfe7a427f74/sfml-populate.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/CMakeFiles/39d91afdd663db09a1454756db6da272/sfml-populate-complete.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/CMakeFiles/47d930f6df7a593954578f9205406309/sfml-populate-build.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/CMakeFiles/47d930f6df7a593954578f9205406309/sfml-populate-configure.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/CMakeFiles/47d930f6df7a593954578f9205406309/sfml-populate-download.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/CMakeFiles/47d930f6df7a593954578f9205406309/sfml-populate-install.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/CMakeFiles/47d930f6df7a593954578f9205406309/sfml-populate-mkdir.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/CMakeFiles/47d930f6df7a593954578f9205406309/sfml-populate-patch.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/CMakeFiles/47d930f6df7a593954578f9205406309/sfml-populate-test.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/CMakeFiles/47d930f6df7a593954578f9205406309/sfml-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"sfml-populate"
+		],
+		"name" : "sfml-populate"
+	}
+}

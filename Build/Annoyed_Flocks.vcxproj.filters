@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\include\Enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\include\Slingshot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{4FAC2E47-4278-3155-BAA0-532C9AA33FB4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{83866939-27E4-3830-92FA-B27334550391}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

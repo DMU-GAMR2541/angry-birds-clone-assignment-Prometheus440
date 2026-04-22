@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\src\gtest_main.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{83866939-27E4-3830-92FA-B27334550391}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

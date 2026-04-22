@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/box2d-subbuild/CMakeFiles/box2d-populate"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/box2d-subbuild/CMakeFiles/6ac66032d4208bb7ba0e6c72542fb5eb/box2d-populate.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/box2d-subbuild/CMakeFiles/574149a6909547aa59e0b79b119ed75c/box2d-populate-complete.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/box2d-subbuild/CMakeFiles/b2a2013a3563a6f1031bede606ed9153/box2d-populate-build.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/box2d-subbuild/CMakeFiles/b2a2013a3563a6f1031bede606ed9153/box2d-populate-configure.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/box2d-subbuild/CMakeFiles/b2a2013a3563a6f1031bede606ed9153/box2d-populate-download.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/box2d-subbuild/CMakeFiles/b2a2013a3563a6f1031bede606ed9153/box2d-populate-install.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/box2d-subbuild/CMakeFiles/b2a2013a3563a6f1031bede606ed9153/box2d-populate-mkdir.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/box2d-subbuild/CMakeFiles/b2a2013a3563a6f1031bede606ed9153/box2d-populate-patch.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/box2d-subbuild/CMakeFiles/b2a2013a3563a6f1031bede606ed9153/box2d-populate-test.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/box2d-subbuild/CMakeFiles/b2a2013a3563a6f1031bede606ed9153/box2d-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"box2d-populate"
+		],
+		"name" : "box2d-populate"
+	}
+}

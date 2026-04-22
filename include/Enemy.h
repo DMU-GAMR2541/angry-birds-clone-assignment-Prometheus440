@@ -1,8 +1,12 @@
 #pragma once
+#include <iostream>
+
+using namespace std;
+
 class Enemy {
-/// <summary>
-/// Varaibles that define an enemy.
-/// </summary>
+    /// <summary>
+    /// Varaibles that define an enemy.
+    /// </summary>
 private:
     int i_health;
     bool b_isDestroyed;
@@ -15,11 +19,17 @@ public:
     //Class functions to be tested.
     void takeDamage(int damage) {
         if (damage < 0) return;
-            i_health -= damage;
+        i_health -= damage;
         if (i_health <= 0) {
             i_health = 0;
             b_isDestroyed = true;
         }
+    }
+
+    void setHealth()
+    {
+        cout << "Enter health value" << "\n";
+        cin >> i_health;
     }
 
     int getHealth() const { return i_health; }

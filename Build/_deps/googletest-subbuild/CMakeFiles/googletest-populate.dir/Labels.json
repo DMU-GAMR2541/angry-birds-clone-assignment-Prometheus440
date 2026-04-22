@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-subbuild/CMakeFiles/googletest-populate"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-subbuild/CMakeFiles/fdc05eb42806aa654c8245042c21f0b3/googletest-populate.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-subbuild/CMakeFiles/09264f71a9f308608a9acfe322bad39e/googletest-populate-complete.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-subbuild/CMakeFiles/6708d12848cd223184a5a303c59768f5/googletest-populate-build.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-subbuild/CMakeFiles/6708d12848cd223184a5a303c59768f5/googletest-populate-configure.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-subbuild/CMakeFiles/6708d12848cd223184a5a303c59768f5/googletest-populate-download.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-subbuild/CMakeFiles/6708d12848cd223184a5a303c59768f5/googletest-populate-install.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-subbuild/CMakeFiles/6708d12848cd223184a5a303c59768f5/googletest-populate-mkdir.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-subbuild/CMakeFiles/6708d12848cd223184a5a303c59768f5/googletest-populate-patch.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-subbuild/CMakeFiles/6708d12848cd223184a5a303c59768f5/googletest-populate-test.rule"
+		},
+		{
+			"file" : "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-subbuild/CMakeFiles/6708d12848cd223184a5a303c59768f5/googletest-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"googletest-populate"
+		],
+		"name" : "googletest-populate"
+	}
+}

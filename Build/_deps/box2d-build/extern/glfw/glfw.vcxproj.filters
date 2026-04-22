@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\context.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\init.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\input.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\monitor.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\vulkan.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\window.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\win32_init.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\win32_joystick.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\win32_monitor.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\win32_time.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\win32_thread.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\win32_window.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\wgl_context.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\egl_context.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\osmesa_context.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\internal.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\mappings.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\include\GLFW\glfw3.h">
+      <Filter>include\GLFW</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\include\GLFW\glfw3native.h">
+      <Filter>include\GLFW</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\win32_platform.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\win32_joystick.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\wgl_context.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\egl_context.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\src\osmesa_context.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-src\extern\glfw\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{73998F52-2CD3-35DD-9098-52ACCB75DB8E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\GLFW">
+      <UniqueIdentifier>{A459947E-4D57-3566-9C1E-E65071DB70F5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{AB209F07-41B5-30E2-94FF-D96939CA6CA3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
