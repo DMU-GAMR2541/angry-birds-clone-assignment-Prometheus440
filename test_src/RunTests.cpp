@@ -55,6 +55,17 @@ TEST_F(EnemyTest, LethalDamagePopsPig) {
     EXPECT_TRUE(enemy->checkIfPopped());
 }
 
+TEST_F(EnemyTest, EnemyPosition) {
+    Enemy e(50, 10.0f, 13.0f);
+    vector<float> pos = e.locateEnemy();
+
+    EXPECT_EQ(pos[0], 10.0f);
+    EXPECT_EQ(pos[1], 14.0f);
+
+    FAIL() << "Enemy is lost";
+    SUCCEED() << "Enemy is found";
+}
+
 TEST_F(EnemyTest, BirdTypeCheck)
 {
     std::string str = "red";
