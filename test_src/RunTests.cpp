@@ -50,6 +50,7 @@ TEST(Enemy, First_test) {
     FAIL() << "Test didn't pass";
 }
 
+// Fixture tests
 TEST_F(EnemyTest, LethalDamagePopsPig) {
     enemy->takeDamage(60);
     EXPECT_TRUE(enemy->checkIfPopped());
@@ -94,6 +95,35 @@ TEST_F(EnemyTest, EnemyHealthEnter)
 
 }
 
+// Parameterised tests
+class ParamTest : public::testing::TestWithParam<int> {
+protected:
+    ParamTest() = default;
+    ~ParamTest() = default;
+
+    void SetUp() override
+    {
+        // Code here will be called immediately after the constructor (right
+        // before each test).
+
+    }
+
+    void TearDown() override
+    {
+
+    }
+};
+
+TEST_P(ParamTest, SimpleTest)
+{
+    int i_test = GetParam();
+    std::cout << "Param value:: " << i_test << std::endl;
+    EXPECT_GT(i_test, 1);
+}
+
+INSTANTIATE_TEST_SUITE_P( Simple,ParamTest, ::testing::Values(1, 2, 3, 4, 5));
+
+// Test
 int main(int argc, char** argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
