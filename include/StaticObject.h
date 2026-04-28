@@ -8,10 +8,12 @@ class StaticObject : public virtual GameObject { // Virtual to stop ambiguity fo
 	~StaticObject() override = default;
 
 	// Override the pure virtual functions from GameObject
-	void update() override {
+	void update() override
+	{
 		// Implementation for updating the static object
 	}
-	void render() override {
+	void render() override
+	{
 		// Implementation for rendering the static object
 	}
 };

@@ -8,10 +8,12 @@ class DynamicObject : public virtual GameObject{ // Virtual to stop ambiguity fo
 	~DynamicObject() override = default;
 
 	// Override the pure virtual functions from GameObject
-	void update() override {
+	void update() override
+	{
 		// Implementation for updating the dynamic object
 	}
-	void render() override {
+	void render(sf::RenderWindow& sf_window) override
+	{
 		// Implementation for rendering the dynamic object
 	}
 };

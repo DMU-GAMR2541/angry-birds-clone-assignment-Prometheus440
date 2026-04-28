@@ -4,6 +4,24 @@
 class Bird : public DynamicObject {
 	public:
 		//Constructor
-		Bird() {
+		Bird()
+		{
+
+		}
+
+		// Destructor
+		~Bird() override
+		{
+
+		}
+
+		void update() override
+		{
+
+		}
+
+		void render(sf::RenderWindow& sf_window) override
+		{
+
 		}
 };

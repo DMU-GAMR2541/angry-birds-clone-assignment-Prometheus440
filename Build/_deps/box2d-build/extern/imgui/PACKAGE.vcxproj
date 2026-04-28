@@ -25,7 +25,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{9362ABA7-A947-35A3-8893-62DC22FBAAD2}</ProjectGuid>
+    <ProjectGuid>{A0E4E7A2-E540-3E92-933C-B80B295D1E87}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
@@ -71,9 +71,9 @@
     <PostBuildEvent>
       <Message></Message>
       <Command>setlocal
-cd "H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build"
+cd "D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build"
 if %errorlevel% neq 0 goto :cmEnd
-H:
+D:
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\CMake\bin\cpack.exe" -C $(Configuration) --config ./CPackConfig.cmake
 if %errorlevel% neq 0 goto :cmEnd
@@ -89,9 +89,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <PostBuildEvent>
       <Message></Message>
       <Command>setlocal
-cd "H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build"
+cd "D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build"
 if %errorlevel% neq 0 goto :cmEnd
-H:
+D:
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\CMake\bin\cpack.exe" -C $(Configuration) --config ./CPackConfig.cmake
 if %errorlevel% neq 0 goto :cmEnd
@@ -107,9 +107,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <PostBuildEvent>
       <Message></Message>
       <Command>setlocal
-cd "H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build"
+cd "D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build"
 if %errorlevel% neq 0 goto :cmEnd
-H:
+D:
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\CMake\bin\cpack.exe" -C $(Configuration) --config ./CPackConfig.cmake
 if %errorlevel% neq 0 goto :cmEnd
@@ -125,9 +125,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <PostBuildEvent>
       <Message></Message>
       <Command>setlocal
-cd "H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build"
+cd "D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build"
 if %errorlevel% neq 0 goto :cmEnd
-H:
+D:
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\CMake\bin\cpack.exe" -C $(Configuration) --config ./CPackConfig.cmake
 if %errorlevel% neq 0 goto :cmEnd
@@ -140,7 +140,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\CMakeFiles\5950fb33176f64c29dc922d813ff57a3\PACKAGE_force.rule">
+    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\CMakeFiles\d3ca0a63219eb81692478f8efbc49d5f\PACKAGE_force.rule">
       <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"> </Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
@@ -153,7 +153,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-build\extern\imgui\CMakeFiles\PACKAGE_force</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-build\extern\imgui\CMakeFiles\PACKAGE_force</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</VerifyInputsAndOutputsExist>
       <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</BuildInParallel>
@@ -168,7 +168,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-build\extern\imgui\CMakeFiles\PACKAGE_force</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-build\extern\imgui\CMakeFiles\PACKAGE_force</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
       <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</VerifyInputsAndOutputsExist>
       <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</BuildInParallel>
@@ -183,7 +183,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-build\extern\imgui\CMakeFiles\PACKAGE_force</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-build\extern\imgui\CMakeFiles\PACKAGE_force</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
       <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</VerifyInputsAndOutputsExist>
       <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</BuildInParallel>
@@ -198,20 +198,21 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-build\extern\imgui\CMakeFiles\PACKAGE_force</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-build\extern\imgui\CMakeFiles\PACKAGE_force</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
       <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</VerifyInputsAndOutputsExist>
     </CustomBuild>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\ZERO_CHECK.vcxproj">
-      <Project>{57B84A8B-0D2E-3B26-8434-49F2C9B0913D}</Project>
+    <ProjectReference Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\ZERO_CHECK.vcxproj">
+      <Project>{5F2DCFBC-6B65-3BE1-9D7C-4173B326F142}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-build\googletest\ALL_BUILD.vcxproj">
-      <Project>{CE182D62-C42E-383A-9850-FD23D6A03B5E}</Project>
+    <ProjectReference Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-build\googletest\ALL_BUILD.vcxproj">
+      <Project>{CEE85DBA-8F82-3A45-8F32-C3568BEA5E4E}</Project>
       <Name>ALL_BUILD</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

@@ -2,14 +2,26 @@
 #include "DynamicObject.h"
 
 class Catapult : public DynamicObject {
-	private:
-		int tension;
-		bool loaded;
-
 	public:
 		// Constructor
-		Catapult() {
-			tension = 0;
-			loaded = false;
+		Catapult()
+		{
+			
+		}
+
+		// Destructor
+		~Catapult() override
+		{
+
+		}
+
+		void update() override
+		{
+
+		}
+
+		void render(sf::RenderWindow& sf_window) override
+		{
+
 		}
 };

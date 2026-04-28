@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 
 class GameObject {
 	public:
@@ -8,5 +9,5 @@ class GameObject {
 
 	// Pure virtual functions to be implemented by derived classes
 	virtual void update() = 0;
-	virtual void render() = 0;
+	virtual void render(sf::RenderWindow& sf_window) = 0;
 };

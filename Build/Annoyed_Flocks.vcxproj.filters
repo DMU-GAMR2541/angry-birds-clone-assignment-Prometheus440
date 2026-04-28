@@ -1,27 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\src\main.cpp">
+    <ClCompile Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\include\Enemy.h">
+    <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\include\Bird.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\include\Slingshot.h">
+    <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\include\Catapult.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\include\DynamicObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\include\Enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\include\GameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\include\NonInteractable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\include\Pig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\include\Slingshot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\include\StaticObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\include\UI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\CMakeLists.txt" />
+    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{34F0ADC8-BBAE-39B4-9AC1-0ABAEA2EAB32}</UniqueIdentifier>
+      <UniqueIdentifier>{4FAC2E47-4278-3155-BAA0-532C9AA33FB4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{7F098F45-9D1C-371D-9CF6-F7DE1417B115}</UniqueIdentifier>
+      <UniqueIdentifier>{83866939-27E4-3830-92FA-B27334550391}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

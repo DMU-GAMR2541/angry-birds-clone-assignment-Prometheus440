@@ -1,10 +1,31 @@
 #include <SFML/Graphics.hpp>
 #include <box2d/box2d.h>
 #include <iostream>
+using namespace std;
+#include "Pig.h"
+#include "Bird.h"
+#include "Catapult.h"
+
+// Upcasting example function
+void listDynamics(DynamicObject* obj, std::string name)
+{
+    // Gets all types of dynamic objects and prints them out
+    cout << name << " has been upcast" << endl;
+}
 
 int main() {
+    
+    // Upcasting example
+    Pig pig(3, "../assets/Ang_Birds/Dog.jpg");
+    Bird bird;
+    Catapult catapult;
+
+    listDynamics(&pig, "Pig");
+    listDynamics(&bird, "Bird");
+    listDynamics(&catapult, "Catapult");
+
     // --- 1. WINDOW SETUP ---
-    sf::RenderWindow window(sf::VideoMode(1200, 800), "Annoyed_Flocks");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Annoyed_Flocks");
     window.setFramerateLimit(60);
 
     //Box2D works in meters. SFML works in pixels.
@@ -133,6 +154,8 @@ int main() {
         window.draw(sf_wallVisual);
         window.draw(sf_plankVisual);
         window.draw(sf_ballVisual);
+
+        pig.render(window);
 
         window.display();
     }

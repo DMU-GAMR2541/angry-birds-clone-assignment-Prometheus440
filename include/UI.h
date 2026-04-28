@@ -9,10 +9,12 @@ class UI : public StaticObject, public DynamicObject {
 	~UI() override = default;
 
 	// Override the pure virtual functions from GameObject
-	void update() override {
+	void update() override
+	{
 		// Implementation for updating the UI object
 	}
-	void render() override {
+	void render() override
+	{
 		// Implementation for rendering the UI object
 	}
 };
