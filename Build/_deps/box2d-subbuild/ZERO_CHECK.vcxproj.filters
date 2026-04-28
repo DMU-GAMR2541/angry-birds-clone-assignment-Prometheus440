@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-subbuild\CMakeFiles\6ac66032d4208bb7ba0e6c72542fb5eb\generate.stamp.rule">
+    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\box2d-subbuild\CMakeFiles\407da6cde25d03d324628b1b8b90449a\generate.stamp.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{9E38EC8D-330A-32D9-B2D5-B616776F01C3}</UniqueIdentifier>
+      <UniqueIdentifier>{308EFDAA-53F4-3C5A-AD04-D0F7602551E5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
