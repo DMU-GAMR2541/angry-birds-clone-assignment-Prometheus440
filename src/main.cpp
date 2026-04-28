@@ -4,7 +4,7 @@
 
 int main() {
     // --- 1. WINDOW SETUP ---
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Annoyed_Flocks");
+    sf::RenderWindow window(sf::VideoMode(1200, 800), "Annoyed_Flocks");
     window.setFramerateLimit(60);
 
     //Box2D works in meters. SFML works in pixels.

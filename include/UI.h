@@ -1,7 +1,8 @@
 #pragma once
 #include "StaticObject.h"
+#include "DynamicObject.h"
 
-class UI : public StaticObject {
+class UI : public StaticObject, public DynamicObject {
 	public:
 	// Default constructor and destructor
 	UI() = default;

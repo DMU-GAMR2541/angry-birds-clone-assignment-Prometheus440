@@ -1,7 +1,7 @@
 #pragma once
 #include "GameObject.h"
 
-class StaticObject : public GameObject {
+class StaticObject : public virtual GameObject { // Virtual to stop ambiguity for UI inheritance
 	public:
 	// Default constructor and destructor
 	StaticObject() = default;
