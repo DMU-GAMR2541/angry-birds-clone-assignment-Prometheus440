@@ -110,6 +110,32 @@ int main() {
     sf_ballVisual.setFillColor(sf::Color::Yellow);
 
     // --- 7. MAIN LOOP ---
+
+    // ==== PHYSICS SET UP ====
+
+    // pig1
+    b2Vec2 b2_pig1PosIn(400.0f / SCALE, 300.0f / SCALE); // Convert from pixels to meters for Box2D
+
+    b2Vec2 b2_pig1Pos; // position in game world
+    b2BodyDef b2_pig1Def; // Body definition (sets initial position and type)
+    b2FixtureDef b2_pig1FixtureDef; // Fixture definition (attaches shape to body and adds friction, density and bounce)
+    b2Body* b2_pig1Body; // Body (physical instance in world)
+    b2CircleShape b2_pig1Circle; // Shape of object (geometry to define collision boundaries)
+	b2_pig1Circle.m_radius = 20.0f / SCALE; // Set radius of the circle shape for the pig
+
+    b2_pig1Def.type = b2_dynamicBody; // Set the body type to dynamic for physics simulation
+    b2_pig1Def.position = b2_pig1PosIn;
+    b2_pig1Body = world.CreateBody(&b2_pig1Def); // Create body in world
+
+    // Set up fixture
+    b2_pig1FixtureDef.shape = &b2_pig1Circle; // Set the shape of the fixture to the circle
+    b2_pig1FixtureDef.density = 1.0f; // Set density
+    b2_pig1FixtureDef.friction = 0.3f; // Set friction
+    b2_pig1FixtureDef.restitution = 0.5f; // Set bounciness
+
+    b2_pig1Body->CreateFixture(&b2_pig1FixtureDef); // Attach fixture to body
+
+    // ==== WHILE WINDOW IS OPEN ====
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -151,11 +177,18 @@ int main() {
         //Render all of the content at each frame. Remember you need to clear the screen each iteration or artefacts remain.
         window.clear(sf::Color(135, 206, 235)); // Sky Blue
 
+        // Added objects
+        pig1.setPosition(b2_pig1Body->GetPosition().x * SCALE, b2_pig1Body->GetPosition().y * SCALE);
+
+
+
+
         window.draw(sf_groundVisual);
         window.draw(sf_wallVisual);
         window.draw(sf_plankVisual);
         window.draw(sf_ballVisual);
 
+        // Render sprites
         pig1.render(window);
         pig2.render(window);
 		bird.render(window);

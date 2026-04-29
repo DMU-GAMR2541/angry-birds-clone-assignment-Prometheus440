@@ -49,4 +49,9 @@ class Pig : public DynamicObject {
 		{
 			sf_window.draw(sp_rendered);
 		}
+
+		void setPosition(float x, float y)
+		{
+			sp_rendered.setPosition(x, y);
+		}
 };
