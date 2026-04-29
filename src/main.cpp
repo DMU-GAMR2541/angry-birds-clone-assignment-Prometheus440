@@ -16,11 +16,12 @@ void listDynamics(DynamicObject* obj, std::string name)
 int main() {
     
     // Upcasting example
-    Pig pig(3, "../assets/Ang_Birds/Dog.jpg");
-    Bird bird;
+    Pig pig1(3, "../assets/Ang_Birds/pig.png", 400.0f, 300.0f, 0.04f);
+    Pig pig2(3, "../assets/Ang_Birds/pig_helmet.png", 600.0f, 350.0f, 0.225f);
+    Bird bird("../assets/Ang_Birds/red.png", 100.0f, 400.0f);
     Catapult catapult;
 
-    listDynamics(&pig, "Pig");
+    listDynamics(&pig1, "Pig");
     listDynamics(&bird, "Bird");
     listDynamics(&catapult, "Catapult");
 
@@ -155,7 +156,9 @@ int main() {
         window.draw(sf_plankVisual);
         window.draw(sf_ballVisual);
 
-        pig.render(window);
+        pig1.render(window);
+        pig2.render(window);
+		bird.render(window);
 
         window.display();
     }
