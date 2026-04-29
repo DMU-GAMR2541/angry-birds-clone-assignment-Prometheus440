@@ -113,7 +113,7 @@ int main() {
 
     // ==== PHYSICS SET UP ====
 
-    // pig1
+    // === pig1 ===
     b2Vec2 b2_pig1PosIn(400.0f / SCALE, 300.0f / SCALE); // Convert from pixels to meters for Box2D
 
     b2Vec2 b2_pig1Pos; // position in game world
@@ -121,7 +121,7 @@ int main() {
     b2FixtureDef b2_pig1FixtureDef; // Fixture definition (attaches shape to body and adds friction, density and bounce)
     b2Body* b2_pig1Body; // Body (physical instance in world)
     b2CircleShape b2_pig1Circle; // Shape of object (geometry to define collision boundaries)
-	b2_pig1Circle.m_radius = 20.0f / SCALE; // Set radius of the circle shape for the pig
+	b2_pig1Circle.m_radius = 30.0f / SCALE; // Set radius of the circle shape for the pig
 
     b2_pig1Def.type = b2_dynamicBody; // Set the body type to dynamic for physics simulation
     b2_pig1Def.position = b2_pig1PosIn;
@@ -134,6 +134,30 @@ int main() {
     b2_pig1FixtureDef.restitution = 0.5f; // Set bounciness
 
     b2_pig1Body->CreateFixture(&b2_pig1FixtureDef); // Attach fixture to body
+
+
+    // === bird ===
+    b2Vec2 b2_birdPosIn(100.0f / SCALE, 400.0f / SCALE); // Convert from pixels to meters for Box2D
+
+    b2Vec2 b2_birdPos; // position in game world
+    b2BodyDef b2_birdDef; // Body definition (sets initial position and type)
+    b2FixtureDef b2_birdFixtureDef; // Fixture definition (attaches shape to body and adds friction, density and bounce)
+    b2Body* b2_birdBody; // Body (physical instance in world)
+    b2CircleShape b2_birdCircle; // Shape of object (geometry to define collision boundaries)
+    b2_birdCircle.m_radius = 30.0f / SCALE; // Set radius of the circle shape for the pig
+
+    b2_birdDef.type = b2_dynamicBody; // Set the body type to dynamic for physics simulation
+    b2_birdDef.position = b2_birdPosIn;
+    b2_birdBody = world.CreateBody(&b2_birdDef); // Create body in world
+
+    // Set up fixture
+    b2_birdFixtureDef.shape = &b2_birdCircle; // Set the shape of the fixture to the circle
+    b2_birdFixtureDef.density = 1.0f; // Set density
+    b2_birdFixtureDef.friction = 0.3f; // Set friction
+    b2_birdFixtureDef.restitution = 0.5f; // Set bounciness
+
+    b2_birdBody->CreateFixture(&b2_birdFixtureDef); // Attach fixture to body
+
 
     // ==== WHILE WINDOW IS OPEN ====
     while (window.isOpen()) {
@@ -154,6 +178,26 @@ int main() {
                     b2_ballBody->ApplyLinearImpulse(b2Vec2(5.0f, -5.0f), b2_ballBody->GetWorldCenter(), true);
 
                     std::cout << "Firing!!!!" << std::endl;
+                }
+            }
+
+            // Added for impulse example when E is pressed
+            if (event.type == sf::Event::KeyPressed)
+            {
+                if (event.key.code == sf::Keyboard::E)
+                {
+                    // Calculate launch vector (target pos - origin pos)
+                    b2Vec2 b2_originPos = b2_birdBody->GetPosition();
+                    b2Vec2 b2_targetPos = b2_pig1Body->GetPosition(); // Target is pig1
+
+                    b2Vec2 b2_launchVec; // Making launch direction
+                    b2_launchVec.x = b2_targetPos.x - b2_originPos.x;
+                    b2_launchVec.y = b2_targetPos.y - b2_originPos.y;
+
+                    // Impulse
+                    float f_speedMultiplier = 3.0f;
+                    b2Vec2 b2_impulseMagnitude(b2_launchVec.x * f_speedMultiplier, b2_launchVec.y * f_speedMultiplier);
+                    b2_birdBody->ApplyLinearImpulseToCenter(b2_impulseMagnitude, true);
                 }
             }
         }
@@ -177,8 +221,11 @@ int main() {
         //Render all of the content at each frame. Remember you need to clear the screen each iteration or artefacts remain.
         window.clear(sf::Color(135, 206, 235)); // Sky Blue
 
-        // Added objects
+
+
+        // === Added objects ===
         pig1.setPosition(b2_pig1Body->GetPosition().x * SCALE, b2_pig1Body->GetPosition().y * SCALE);
+        bird.setPosition(b2_birdBody->GetPosition().x * SCALE, b2_birdBody->GetPosition().y * SCALE);
 
 
 

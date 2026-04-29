@@ -1,44 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\6c9a352842c71a1905ec34ac1025d94f\googletest-populate-mkdir.rule">
+    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\6708d12848cd223184a5a303c59768f5\googletest-populate-mkdir.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\6c9a352842c71a1905ec34ac1025d94f\googletest-populate-download.rule">
+    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\6708d12848cd223184a5a303c59768f5\googletest-populate-download.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\6c9a352842c71a1905ec34ac1025d94f\googletest-populate-update.rule">
+    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\6708d12848cd223184a5a303c59768f5\googletest-populate-update.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\6c9a352842c71a1905ec34ac1025d94f\googletest-populate-patch.rule">
+    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\6708d12848cd223184a5a303c59768f5\googletest-populate-patch.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\6c9a352842c71a1905ec34ac1025d94f\googletest-populate-configure.rule">
+    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\6708d12848cd223184a5a303c59768f5\googletest-populate-configure.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\6c9a352842c71a1905ec34ac1025d94f\googletest-populate-build.rule">
+    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\6708d12848cd223184a5a303c59768f5\googletest-populate-build.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\6c9a352842c71a1905ec34ac1025d94f\googletest-populate-install.rule">
+    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\6708d12848cd223184a5a303c59768f5\googletest-populate-install.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\6c9a352842c71a1905ec34ac1025d94f\googletest-populate-test.rule">
+    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\6708d12848cd223184a5a303c59768f5\googletest-populate-test.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\8c49629f0e39795a37bff760c5bfddfa\googletest-populate-complete.rule">
+    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\09264f71a9f308608a9acfe322bad39e\googletest-populate-complete.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\e08d7a1a1d7fcfa221d514100f7207a9\googletest-populate.rule">
+    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\fdc05eb42806aa654c8245042c21f0b3\googletest-populate.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeLists.txt" />
+    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\googletest-populate" />
+    <None Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-subbuild\CMakeFiles\googletest-populate" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{BB8F812B-0D06-39C8-900C-2D6DEF6CE21A}</UniqueIdentifier>
+      <UniqueIdentifier>{FDE8B944-8899-332C-BDC2-BD2C7E8EC239}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

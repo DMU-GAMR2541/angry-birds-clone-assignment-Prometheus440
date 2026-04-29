@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\CMakeFiles\6c624e9b99c9072d2c7c1b5b62b7436f\INSTALL_force.rule">
+    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\CMakeFiles\6ae90afdb8db04368697c7c1180681bd\INSTALL_force.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{5C3901B4-FB08-3DC5-BB76-925C820FB6BA}</UniqueIdentifier>
+      <UniqueIdentifier>{CF3B521F-56B0-33F5-B927-63C463F6B485}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
