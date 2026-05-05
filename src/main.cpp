@@ -15,6 +15,8 @@ void listDynamics(DynamicObject* obj, std::string name)
 
 int main() {
     
+	bool b_isDragging = false; // Added for mouse dragging example
+
     // Upcasting example
     Pig pig1(3, "../assets/Ang_Birds/pig.png", 400.0f, 300.0f, 0.04f);
     Pig pig2(3, "../assets/Ang_Birds/pig_helmet.png", 600.0f, 350.0f, 0.225f);
@@ -170,11 +172,11 @@ int main() {
     b2_yellowBirdCircle.m_radius = 30.0f / SCALE; // Set radius of the circle shape for the pig
 
     b2_yellowBirdDef.type = b2_dynamicBody; // Set the body type to dynamic for physics simulation
-    b2_yellowBirdDef.position = b2_birdPosIn;
+    b2_yellowBirdDef.position = b2_yellowBirdPosIn;
     b2_yellowBirdBody = world.CreateBody(&b2_yellowBirdDef); // Create body in world
 
     // Set up fixture
-    b2_yellowBirdFixtureDef.shape = &b2_birdCircle; // Set the shape of the fixture to the circle
+    b2_yellowBirdFixtureDef.shape = &b2_yellowBirdCircle; // Set the shape of the fixture to the circle
     b2_yellowBirdFixtureDef.density = 1.0f; // Set density
     b2_yellowBirdFixtureDef.friction = 0.3f; // Set friction
     b2_yellowBirdFixtureDef.restitution = 0.5f; // Set bounciness
@@ -224,11 +226,35 @@ int main() {
                 }
             }
 
-            // Yellow bird follows mouse cursor
-            if (event.type == sf::Event::MouseMoved)
+            // Yellow bird follows mouse cursor when mouse left click is pressed
+            if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
+            {
+				b_isDragging = true; // Start dragging when left mouse button is pressed
+            }
+
+            if (event.type == sf::Event::MouseMoved && b_isDragging)
             {
 				b2Vec2 b2_mousePosIn(event.mouseMove.x / SCALE, event.mouseMove.y / SCALE); // Get mouse position
 				b2_yellowBirdBody->SetTransform(b2_mousePosIn, 0); // Set yellow bird position to mouse position
+            }
+
+            if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
+            {
+				// Stop dragging when left mouse button is released
+				b_isDragging = false;
+
+                // when button is released, calcuate impulse
+                b2Vec2 b2_yellowOriginPos = b2_yellowBirdBody->GetPosition();
+                b2Vec2 b2_yellowTargetPos = b2_pig1Body->GetPosition(); // Target is pig1
+
+                b2Vec2 b2_yellowLaunchVec; // Making launch direction
+                b2_yellowLaunchVec.x = b2_yellowTargetPos.x - b2_yellowOriginPos.x;
+                b2_yellowLaunchVec.y = b2_yellowTargetPos.y - b2_yellowOriginPos.y;
+
+                // Impulse
+                float f_yellowSpeedMultiplier = 3.0f;
+                b2Vec2 b2_yellowImpulseMagnitude(b2_yellowLaunchVec.x * f_yellowSpeedMultiplier, b2_yellowLaunchVec.y * f_yellowSpeedMultiplier);
+                b2_yellowBirdBody->ApplyLinearImpulseToCenter(b2_yellowImpulseMagnitude, true);
             }
         }
 
