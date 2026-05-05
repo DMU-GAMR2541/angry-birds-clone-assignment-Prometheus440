@@ -6,7 +6,6 @@ class Bird : public DynamicObject {
 		float spawnX;
 		float spawnY;
 		float scale;
-		bool b_isDragging;
 
 		//SFML variables
 		sf::Sprite sp_rendered;

@@ -230,18 +230,26 @@ int main() {
             if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
             {
 				b_isDragging = true; // Start dragging when left mouse button is pressed
+
+                // Make body static
+				b2_yellowBirdBody->SetType(b2_staticBody);
+                b2_yellowBirdBody->SetLinearVelocity(b2Vec2(0, 0));
+				b2_yellowBirdBody->SetAngularVelocity(0);
             }
 
             if (event.type == sf::Event::MouseMoved && b_isDragging)
             {
 				b2Vec2 b2_mousePosIn(event.mouseMove.x / SCALE, event.mouseMove.y / SCALE); // Get mouse position
 				b2_yellowBirdBody->SetTransform(b2_mousePosIn, 0); // Set yellow bird position to mouse position
+				b2_yellowBirdBody->SetGravityScale(0); // Disable gravity while dragging
             }
 
             if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
             {
+
 				// Stop dragging when left mouse button is released
 				b_isDragging = false;
+				b2_yellowBirdBody->SetType(b2_dynamicBody); // Re-enable gravity when released
 
                 // when button is released, calcuate impulse
                 b2Vec2 b2_yellowOriginPos = b2_yellowBirdBody->GetPosition();
@@ -250,9 +258,9 @@ int main() {
                 b2Vec2 b2_yellowLaunchVec; // Making launch direction
                 b2_yellowLaunchVec.x = b2_yellowTargetPos.x - b2_yellowOriginPos.x;
                 b2_yellowLaunchVec.y = b2_yellowTargetPos.y - b2_yellowOriginPos.y;
-
+                
                 // Impulse
-                float f_yellowSpeedMultiplier = 3.0f;
+                float f_yellowSpeedMultiplier = 50.0f;
                 b2Vec2 b2_yellowImpulseMagnitude(b2_yellowLaunchVec.x * f_yellowSpeedMultiplier, b2_yellowLaunchVec.y * f_yellowSpeedMultiplier);
                 b2_yellowBirdBody->ApplyLinearImpulseToCenter(b2_yellowImpulseMagnitude, true);
             }
