@@ -18,11 +18,12 @@ int main() {
     // Upcasting example
     Pig pig1(3, "../assets/Ang_Birds/pig.png", 400.0f, 300.0f, 0.04f);
     Pig pig2(3, "../assets/Ang_Birds/pig_helmet.png", 600.0f, 350.0f, 0.225f);
-    Bird bird("../assets/Ang_Birds/red.png", 100.0f, 400.0f);
+    Bird redBird("../assets/Ang_Birds/red.png", 100.0f, 400.0f, 0.025);
+    Bird yellowBird("../assets/Ang_Birds/yellow.png", 100.0f, 400.0f, 0.075);
     Catapult catapult;
 
     listDynamics(&pig1, "Pig");
-    listDynamics(&bird, "Bird");
+    listDynamics(&redBird, "Bird");
     listDynamics(&catapult, "Catapult");
 
     // --- 1. WINDOW SETUP ---
@@ -158,6 +159,28 @@ int main() {
 
     b2_birdBody->CreateFixture(&b2_birdFixtureDef); // Attach fixture to body
 
+    // === yellow bird ===
+    b2Vec2 b2_yellowBirdPosIn(100.0f / SCALE, 400.0f / SCALE); // Convert from pixels to meters for Box2D
+
+    b2Vec2 b2_yellowBirdPos; // position in game world
+    b2BodyDef b2_yellowBirdDef; // Body definition (sets initial position and type)
+    b2FixtureDef b2_yellowBirdFixtureDef; // Fixture definition (attaches shape to body and adds friction, density and bounce)
+    b2Body* b2_yellowBirdBody; // Body (physical instance in world)
+    b2CircleShape b2_yellowBirdCircle; // Shape of object (geometry to define collision boundaries)
+    b2_yellowBirdCircle.m_radius = 30.0f / SCALE; // Set radius of the circle shape for the pig
+
+    b2_yellowBirdDef.type = b2_dynamicBody; // Set the body type to dynamic for physics simulation
+    b2_yellowBirdDef.position = b2_birdPosIn;
+    b2_yellowBirdBody = world.CreateBody(&b2_yellowBirdDef); // Create body in world
+
+    // Set up fixture
+    b2_yellowBirdFixtureDef.shape = &b2_birdCircle; // Set the shape of the fixture to the circle
+    b2_yellowBirdFixtureDef.density = 1.0f; // Set density
+    b2_yellowBirdFixtureDef.friction = 0.3f; // Set friction
+    b2_yellowBirdFixtureDef.restitution = 0.5f; // Set bounciness
+
+    b2_yellowBirdBody->CreateFixture(&b2_yellowBirdFixtureDef); // Attach fixture to body
+
 
     // ==== WHILE WINDOW IS OPEN ====
     while (window.isOpen()) {
@@ -200,6 +223,13 @@ int main() {
                     b2_birdBody->ApplyLinearImpulseToCenter(b2_impulseMagnitude, true);
                 }
             }
+
+            // Yellow bird follows mouse cursor
+            if (event.type == sf::Event::MouseMoved)
+            {
+				b2Vec2 b2_mousePosIn(event.mouseMove.x / SCALE, event.mouseMove.y / SCALE); // Get mouse position
+				b2_yellowBirdBody->SetTransform(b2_mousePosIn, 0); // Set yellow bird position to mouse position
+            }
         }
 
         // Update Physics
@@ -225,7 +255,8 @@ int main() {
 
         // === Added objects ===
         pig1.setPosition(b2_pig1Body->GetPosition().x * SCALE, b2_pig1Body->GetPosition().y * SCALE);
-        bird.setPosition(b2_birdBody->GetPosition().x * SCALE, b2_birdBody->GetPosition().y * SCALE);
+        redBird.setPosition(b2_birdBody->GetPosition().x * SCALE, b2_birdBody->GetPosition().y * SCALE);
+        yellowBird.setPosition(b2_yellowBirdBody->GetPosition().x * SCALE, b2_yellowBirdBody->GetPosition().y * SCALE);
 
 
 
@@ -238,7 +269,8 @@ int main() {
         // Render sprites
         pig1.render(window);
         pig2.render(window);
-		bird.render(window);
+		redBird.render(window);
+		yellowBird.render(window);
 
         window.display();
     }

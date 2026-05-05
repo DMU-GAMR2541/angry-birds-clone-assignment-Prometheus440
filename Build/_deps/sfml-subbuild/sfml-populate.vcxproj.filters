@@ -1,44 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\47d930f6df7a593954578f9205406309\sfml-populate-mkdir.rule">
+    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\9b54749d552875859c0ceabec6280869\sfml-populate-mkdir.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\47d930f6df7a593954578f9205406309\sfml-populate-download.rule">
+    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\9b54749d552875859c0ceabec6280869\sfml-populate-download.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\47d930f6df7a593954578f9205406309\sfml-populate-update.rule">
+    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\9b54749d552875859c0ceabec6280869\sfml-populate-update.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\47d930f6df7a593954578f9205406309\sfml-populate-patch.rule">
+    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\9b54749d552875859c0ceabec6280869\sfml-populate-patch.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\47d930f6df7a593954578f9205406309\sfml-populate-configure.rule">
+    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\9b54749d552875859c0ceabec6280869\sfml-populate-configure.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\47d930f6df7a593954578f9205406309\sfml-populate-build.rule">
+    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\9b54749d552875859c0ceabec6280869\sfml-populate-build.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\47d930f6df7a593954578f9205406309\sfml-populate-install.rule">
+    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\9b54749d552875859c0ceabec6280869\sfml-populate-install.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\47d930f6df7a593954578f9205406309\sfml-populate-test.rule">
+    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\9b54749d552875859c0ceabec6280869\sfml-populate-test.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\39d91afdd663db09a1454756db6da272\sfml-populate-complete.rule">
+    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\0ec062b0633f6dec0ca16926c69fae6c\sfml-populate-complete.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\12bc4b7a654a25c99b925dfe7a427f74\sfml-populate.rule">
+    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\31d2609066b2091451511e8cfb083ab2\sfml-populate.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeLists.txt" />
+    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\sfml-populate" />
+    <None Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\sfml-subbuild\CMakeFiles\sfml-populate" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{A47CC931-117C-32AF-8A6E-08A39849FC0D}</UniqueIdentifier>
+      <UniqueIdentifier>{BA4D1AFE-0FC6-31EF-B379-B0CE9D32A967}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

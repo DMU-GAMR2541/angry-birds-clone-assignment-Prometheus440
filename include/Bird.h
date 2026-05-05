@@ -5,6 +5,7 @@ class Bird : public DynamicObject {
 	private:
 		float spawnX;
 		float spawnY;
+		float scale;
 
 		//SFML variables
 		sf::Sprite sp_rendered;
@@ -13,10 +14,11 @@ class Bird : public DynamicObject {
 
 	public:
 		//Constructor
-		Bird(std::string texPath, float x, float y)
+		Bird(std::string texPath, float x, float y, float scaleFactor)
 		{
 			spawnX = x;
 			spawnY = y;
+			scale = scaleFactor;
 
 			if (!sf_tex.loadFromFile(texPath)) // Load texture from file path, if fail then message
 			{
@@ -26,7 +28,7 @@ class Bird : public DynamicObject {
 			sp_rendered.setTexture(sf_tex); // Assign texture to the sprite
 			sp_rendered.setPosition(spawnX, spawnY); // Set the position
 			sp_rendered.setOrigin(sf_tex.getSize().x / 2.0f, sf_tex.getSize().y / 2.0f); // Align the texture to the centre of the instance
-			sp_rendered.setScale(0.025f, 0.025f); // Scale down the bird texture
+			sp_rendered.setScale(scaleFactor, scaleFactor); // Scale down the bird texture
 		}
 
 		// Destructor
