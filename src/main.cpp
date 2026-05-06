@@ -5,6 +5,8 @@ using namespace std;
 #include "Pig.h"
 #include "Bird.h"
 #include "Catapult.h"
+#include <list>
+
 
 // Upcasting example function
 void listDynamics(DynamicObject* obj, std::string name)
@@ -17,16 +19,29 @@ int main() {
     
 	bool b_isDragging = false; // Added for mouse dragging example
 
+    // List of birds
+    //std::list<Bird> ls_birds;
+    //ls_birds.emplace_back(Bird("../assets/Ang_Birds/red.png", 100.0f, 400.0f, 0.025));
+    //ls_birds.emplace_back(Bird("../assets/Ang_Birds/yellow.png", 100.0f, 400.0f, 0.075));
+
+
+
+
+
+
+
+
     // Upcasting example
     Pig pig1(3, "../assets/Ang_Birds/pig.png", 400.0f, 300.0f, 0.04f);
     Pig pig2(3, "../assets/Ang_Birds/pig_helmet.png", 600.0f, 350.0f, 0.225f);
-    Bird redBird("../assets/Ang_Birds/red.png", 100.0f, 400.0f, 0.025);
-    Bird yellowBird("../assets/Ang_Birds/yellow.png", 100.0f, 400.0f, 0.075);
-    Catapult catapult;
+	Bird redBird("../assets/Ang_Birds/red.png", 100.0f, 400.0f, 0.025f);
+	Bird yellowBird("../assets/Ang_Birds/yellow.png", 400.0f, 300.0f, 0.075f);
+    Catapult catapult("../assets/Ang_Birds/Catapult.png", 400.0f, 480.0f, 0.4f);
 
     listDynamics(&pig1, "Pig");
-    listDynamics(&redBird, "Bird");
     listDynamics(&catapult, "Catapult");
+
+
 
     // --- 1. WINDOW SETUP ---
     sf::RenderWindow window(sf::VideoMode(800, 600), "Annoyed_Flocks");
@@ -162,7 +177,8 @@ int main() {
     b2_birdBody->CreateFixture(&b2_birdFixtureDef); // Attach fixture to body
 
     // === yellow bird ===
-    b2Vec2 b2_yellowBirdPosIn(100.0f / SCALE, 400.0f / SCALE); // Convert from pixels to meters for Box2D
+    b2Vec2 b2_yellowBirdPosIn(400.0f / SCALE, 300.0f / SCALE); // Convert from pixels to meters for Box2D
+	b2Vec2 b2_yellowStartPosition = b2_yellowBirdPosIn; // Store the starting position for impulse calculation when released
 
     b2Vec2 b2_yellowBirdPos; // position in game world
     b2BodyDef b2_yellowBirdDef; // Body definition (sets initial position and type)
@@ -241,7 +257,6 @@ int main() {
             {
 				b2Vec2 b2_mousePosIn(event.mouseMove.x / SCALE, event.mouseMove.y / SCALE); // Get mouse position
 				b2_yellowBirdBody->SetTransform(b2_mousePosIn, 0); // Set yellow bird position to mouse position
-				b2_yellowBirdBody->SetGravityScale(0); // Disable gravity while dragging
             }
 
             if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
@@ -249,18 +264,16 @@ int main() {
 
 				// Stop dragging when left mouse button is released
 				b_isDragging = false;
-				b2_yellowBirdBody->SetType(b2_dynamicBody); // Re-enable gravity when released
+				b2_yellowBirdBody->SetType(b2_dynamicBody); // Return to dynamic object for collisions/physics when released
 
                 // when button is released, calcuate impulse
-                b2Vec2 b2_yellowOriginPos = b2_yellowBirdBody->GetPosition();
-                b2Vec2 b2_yellowTargetPos = b2_pig1Body->GetPosition(); // Target is pig1
+				b2Vec2 b2_currentPos = b2_yellowBirdBody->GetPosition(); // Get current position of yellow bird
 
-                b2Vec2 b2_yellowLaunchVec; // Making launch direction
-                b2_yellowLaunchVec.x = b2_yellowTargetPos.x - b2_yellowOriginPos.x;
-                b2_yellowLaunchVec.y = b2_yellowTargetPos.y - b2_yellowOriginPos.y;
+                // Slingshot vector (start - current)
+                b2Vec2 b2_yellowLaunchVec = b2_yellowStartPosition - b2_currentPos;
                 
                 // Impulse
-                float f_yellowSpeedMultiplier = 50.0f;
+                float f_yellowSpeedMultiplier = 5.0f;
                 b2Vec2 b2_yellowImpulseMagnitude(b2_yellowLaunchVec.x * f_yellowSpeedMultiplier, b2_yellowLaunchVec.y * f_yellowSpeedMultiplier);
                 b2_yellowBirdBody->ApplyLinearImpulseToCenter(b2_yellowImpulseMagnitude, true);
             }
@@ -305,6 +318,10 @@ int main() {
         pig2.render(window);
 		redBird.render(window);
 		yellowBird.render(window);
+		catapult.render(window);
+        
+		//auto it = ls_birds.begin();
+		//(*it).render(window);
 
         window.display();
     }

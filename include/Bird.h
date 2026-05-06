@@ -7,12 +7,14 @@ class Bird : public DynamicObject {
 		float spawnY;
 		float scale;
 
-		//SFML variables
-		sf::Sprite sp_rendered;
-		sf::Texture sf_tex;
+
+		b2Body* b2_body; // Box2D body for physics simulation
 
 
 	public:
+		//SFML variables
+		sf::Sprite sp_rendered;
+		sf::Texture sf_tex;
 
 		//Constructor
 		Bird(std::string texPath, float x, float y, float scaleFactor)
