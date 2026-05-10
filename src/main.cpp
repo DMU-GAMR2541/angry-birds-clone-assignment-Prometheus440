@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <box2d/box2d.h>
 #include <iostream>
-using namespace std;
+
 #include "Pig.h"
 #include "Bird.h"
 #include "Catapult.h"
@@ -12,35 +12,27 @@ using namespace std;
 void listDynamics(DynamicObject* obj, std::string name)
 {
     // Gets all types of dynamic objects and prints them out
-    cout << name << " has been upcast" << endl;
+    std::cout << name << " has been upcast" << std::endl;
 }
 
 int main() {
     
 	bool b_isDragging = false; // Added for mouse dragging example
 
+    // Pointers
+    std::unique_ptr<Pig> pig1(new Pig(3, "../assets/Ang_Birds/pig.png", 400.0f, 300.0f, 0.04f));
+    std::unique_ptr<Pig> pig2(new Pig(3, "../assets/Ang_Birds/pig_helmet.png", 600.0f, 350.0f, 0.225f));
+    std::unique_ptr<Catapult> catapult(new Catapult("../assets/Ang_Birds/Catapult.png", 400.0f, 480.0f, 0.4f));
+
+    // Upcasting
+    listDynamics(pig1.get(), "Pig");
+    listDynamics(catapult.get(), "Catapult");
+
+
     // List of birds
-    //std::list<Bird> ls_birds;
-    //ls_birds.emplace_back(Bird("../assets/Ang_Birds/red.png", 100.0f, 400.0f, 0.025));
-    //ls_birds.emplace_back(Bird("../assets/Ang_Birds/yellow.png", 100.0f, 400.0f, 0.075));
-
-
-
-
-
-
-
-
-    // Upcasting example
-    Pig pig1(3, "../assets/Ang_Birds/pig.png", 400.0f, 300.0f, 0.04f);
-    Pig pig2(3, "../assets/Ang_Birds/pig_helmet.png", 600.0f, 350.0f, 0.225f);
-	Bird redBird("../assets/Ang_Birds/red.png", 100.0f, 400.0f, 0.025f);
-	Bird yellowBird("../assets/Ang_Birds/yellow.png", 400.0f, 300.0f, 0.075f);
-    Catapult catapult("../assets/Ang_Birds/Catapult.png", 400.0f, 480.0f, 0.4f);
-
-    listDynamics(&pig1, "Pig");
-    listDynamics(&catapult, "Catapult");
-
+    std::list<std::unique_ptr<Bird>> ls_birds; // Make a list of the unique bird pointers
+    ls_birds.push_back(std::unique_ptr<Bird> (new Bird("../assets/Ang_Birds/red.png", 100.0f, 400.0f, 0.025f)));
+    ls_birds.push_back(std::unique_ptr<Bird> (new Bird("../assets/Ang_Birds/yellow.png", 400.0f, 300.0f, 0.075f)));
 
 
     // --- 1. WINDOW SETUP ---
@@ -301,27 +293,28 @@ int main() {
 
 
         // === Added objects ===
-        pig1.setPosition(b2_pig1Body->GetPosition().x * SCALE, b2_pig1Body->GetPosition().y * SCALE);
-        redBird.setPosition(b2_birdBody->GetPosition().x * SCALE, b2_birdBody->GetPosition().y * SCALE);
-        yellowBird.setPosition(b2_yellowBirdBody->GetPosition().x * SCALE, b2_yellowBirdBody->GetPosition().y * SCALE);
+        pig1->setPosition(b2_pig1Body->GetPosition().x * SCALE, b2_pig1Body->GetPosition().y * SCALE);
 
+        auto it = ls_birds.begin(); // iterator to move through bird list, starting at first bird
+        (*it)->setPosition(b2_birdBody->GetPosition().x* SCALE, b2_birdBody->GetPosition().y* SCALE); // Set pos of first bird
+        ++it; // Move iterator to point to second bird
+        (*it)->setPosition(b2_yellowBirdBody->GetPosition().x* SCALE, b2_yellowBirdBody->GetPosition().y* SCALE); // Set pos of second bird
 
-
-
+        // === Given objects ===
         window.draw(sf_groundVisual);
         window.draw(sf_wallVisual);
         window.draw(sf_plankVisual);
         window.draw(sf_ballVisual);
 
         // Render sprites
-        pig1.render(window);
-        pig2.render(window);
-		redBird.render(window);
-		yellowBird.render(window);
-		catapult.render(window);
+        pig1->render(window);
+        pig2->render(window);
+		catapult->render(window);
         
-		//auto it = ls_birds.begin();
-		//(*it).render(window);
+        for (auto& bird : ls_birds) // Loop through all the birds in the list, not just the first one
+        {
+            bird -> render(window);
+        }
 
         window.display();
     }

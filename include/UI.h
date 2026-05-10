@@ -13,7 +13,7 @@ class UI : public StaticObject, public DynamicObject {
 	{
 		// Implementation for updating the UI object
 	}
-	void render() override
+	void render(sf::RenderWindow& sf_window) override
 	{
 		// Implementation for rendering the UI object
 	}

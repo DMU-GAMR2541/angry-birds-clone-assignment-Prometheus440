@@ -12,7 +12,7 @@ class StaticObject : public virtual GameObject { // Virtual to stop ambiguity fo
 	{
 		// Implementation for updating the static object
 	}
-	void render() override
+	void render(sf::RenderWindow& sf_window) override
 	{
 		// Implementation for rendering the static object
 	}

@@ -25,7 +25,7 @@ class Bird : public DynamicObject {
 
 			if (!sf_tex.loadFromFile(texPath)) // Load texture from file path, if fail then message
 			{
-				std::cout << "Failed to load pig texture" << endl;
+				std::cout << "Failed to load pig texture" << std::endl;
 			}
 
 			sp_rendered.setTexture(sf_tex); // Assign texture to the sprite

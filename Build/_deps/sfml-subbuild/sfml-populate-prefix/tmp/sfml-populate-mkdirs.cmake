@@ -1,27 +1,27 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION ${CMAKE_VERSION}) # this file comes with cmake
 
 # If CMAKE_DISABLE_SOURCE_CHANGES is set to true and the source directory is an
 # existing directory in our source tree, calling file(MAKE_DIRECTORY) on it
 # would cause a fatal error, even though it would be a no-op.
-if(NOT EXISTS "H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-src")
-  file(MAKE_DIRECTORY "H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-src")
+if(NOT EXISTS "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-src")
+  file(MAKE_DIRECTORY "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-src")
 endif()
 file(MAKE_DIRECTORY
-  "H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-build"
-  "H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/sfml-populate-prefix"
-  "H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/sfml-populate-prefix/tmp"
-  "H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp"
-  "H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/sfml-populate-prefix/src"
-  "H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp"
+  "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-build"
+  "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/sfml-populate-prefix"
+  "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/sfml-populate-prefix/tmp"
+  "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp"
+  "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/sfml-populate-prefix/src"
+  "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp"
 )
 
 set(configSubDirs Debug)
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/${subDir}")
+    file(MAKE_DIRECTORY "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp${cfgdir}") # cfgdir has leading slash
 endif()
