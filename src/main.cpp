@@ -24,29 +24,33 @@ int main() {
     bool b_birdFired = false; // To prevent sprites being deleted before any launch
     b2Vec2 b2_dragStartPos(0.0f, 0.0f); // To set birds start vector for relative launches
 
-    // === Pointer variables ===
-    std::unique_ptr<Pig> pig1(new Pig(3, "../assets/Ang_Birds/pig.png", 400.0f, 300.0f, 0.04f));
-    std::unique_ptr<Pig> pig2(new Pig(3, "../assets/Ang_Birds/pig_helmet.png", 600.0f, 350.0f, 0.225f));
+    // === Pigs + birds containers ===
+    std::list<std::unique_ptr<DynamicObject>> ls_birdsAndPigs; // Make a list because the unique bird pointers need to be removed
+    std::string a_birdSpritePaths[3] = { "../assets/Ang_Birds/red.png", "../assets/Ang_Birds/yellow.png", "../assets/Ang_Birds/blue.png"};
+    std::string a_pigSpritePaths[2] = { "../assets/Ang_Birds/pig.png", "../assets/Ang_Birds/pig_helmet.png" };
+
+    // Arrays for looping
+    float a_birdXPos[3] = {250.0f, 300.0f, 500.0f};
+    float a_birdScales[3] = {0.025f, 0.075f, 0.065f};
+    float a_pigXPos[2] = { 400.0f, 600.0f};
+    float a_pigScales[2] = { 0.04f, 0.225f};
+
+    // Bird loop
+    for (int i = 0; i < 3; i++)
+    {
+        ls_birdsAndPigs.push_back(std::unique_ptr<DynamicObject>(new Bird(a_birdSpritePaths[i], a_birdXPos[i], 550.0f, a_birdScales[i])));
+    }
+    // Pig loop
+    for (int i = 0; i < 2; i++)
+    {
+        ls_birdsAndPigs.push_back(std::unique_ptr<DynamicObject>(new Pig(1, a_pigSpritePaths[i], a_pigXPos[i], 550.0f, a_pigScales[i])));
+    }
+
+    // === catapult ===
     std::unique_ptr<Catapult> catapult(new Catapult("../assets/Ang_Birds/Catapult.png", 400.0f, 480.0f, 0.4f));
 
     // Upcasting
-    listDynamics(pig1.get(), "Pig");
     listDynamics(catapult.get(), "Catapult");
-
-    // === Birds ===
-    std::list<std::unique_ptr<Bird>> ls_birds; // Make a list of the unique bird pointers
-
-    // Arrays for looping
-    std::string a_birdSpritePaths[3] = { "../assets/Ang_Birds/red.png", "../assets/Ang_Birds/yellow.png", "../assets/Ang_Birds/blue.png"};
-    float a_birdXPos[3] = {250.0f, 300.0f, 500.0f};
-    float a_birdScales[3] = {0.025f, 0.075f, 0.065f};
-    
-    for (int i = 0; i < 3; i++)
-    {
-        ls_birds.push_back(std::unique_ptr<Bird>(new Bird(a_birdSpritePaths[i], a_birdXPos[i], 550.0f, a_birdScales[i])));
-    }
-
-    // === Mixed container of dynamic objects
 
     //  === Non-interactables ===
     std::vector<std::unique_ptr<NonInteractable>> v_scenery;
@@ -328,7 +332,7 @@ int main() {
             {
                 // Remove bird 1 after its launched and bird 2 has been clicked
 
-                if (b_birdFired && !ls_birds.empty())
+                if (b_birdFired && !ls_birdsAndPigs.empty())
                 {
                     std::cout << "Entered loop" << std::endl;
                     // Destory box2D of the bird first
@@ -336,11 +340,11 @@ int main() {
                     a_birdBodies[i_currentBird] = nullptr; // Can't access pointer 
 
                     // Destroy bird sprite
-                    ls_birds.pop_front();
+                    ls_birdsAndPigs.pop_front();
                     i_currentBird++;
                     b_birdFired = false;
                 }
-                if (ls_birds.empty())
+                if (ls_birdsAndPigs.empty())
                 {
                     return 0;
                 }
@@ -411,18 +415,45 @@ int main() {
 
 
         // === Added objects ===
-        // Pigs 
-        pig1->setPosition(b2_pig1Body->GetPosition().x * SCALE, b2_pig1Body->GetPosition().y * SCALE);
-        pig2->setPosition(b2_pig2Body->GetPosition().x * SCALE, b2_pig2Body->GetPosition().y * SCALE);
-
         // Birds
-        auto it = ls_birds.begin(); // iterator to move through bird list, starting at first bird
-        for (int i = i_currentBird; i < 3 && it != ls_birds.end(); i++) // Start at current bird as they are removed when fired, and make sure list is not empty
+        auto it = ls_birdsAndPigs.begin(); // iterator to move through dynamic objects list, starting at first element
+
+        // Start at current bird
+        // int i loops through a_birdBodies array
+        // it iterates through ls_birdsAndPigs list
+        for (int i = i_currentBird; i < 3 && it != ls_birdsAndPigs.end(); i++) // Because only 3 birds, only go to 3rd element then break
         {
-            (*it)->setPosition(a_birdBodies[i]->GetPosition().x* SCALE, a_birdBodies[i]->GetPosition().y* SCALE); // Set pos of bird
-            ++it; // Move iterator
+            // Get the DynamicObject* pointer
+            // If the DynamicObject* is a Bird*, make it into Bird*
+            // If the DynamicObject* is a Pig*, make it nullptr
+            Bird* bird = dynamic_cast<Bird*>(it->get());
+
+            if (bird != nullptr) // if it is Bird*
+            {
+                bird->setPosition(a_birdBodies[i]->GetPosition().x * SCALE, a_birdBodies[i]->GetPosition().y * SCALE); // Set position
+            }
+
+            ++it;
         }
 
+        // Pigs
+        b2Body* a_pigBodies[2] = {b2_pig1Body, b2_pig2Body};
+        int i_pigIndex = 0;
+
+        // Loop through the whole of ls_birdsAndPigs because birds are removed
+        for (auto& obj : ls_birdsAndPigs)
+        {
+            // Get the DynamicObject* pointer
+            // If the DynamicObject* is a Pig*, make it into Pig*
+            // If the DynamicObject* is a Bird*, make it nullptr
+            Pig* pig = dynamic_cast<Pig*>(obj.get());
+
+            if (pig != nullptr && i_pigIndex < 2)
+            {
+                pig->setPosition(a_pigBodies[i_pigIndex]->GetPosition().x* SCALE, a_pigBodies[i_pigIndex]->GetPosition().y* SCALE); // Set position
+                ++i_pigIndex;
+            }
+        }
 
 
 
@@ -446,12 +477,10 @@ int main() {
 
         // === Added objects ===
 		catapult->render(window);
-        pig1->render(window);
-        pig2->render(window);
         
-        for (auto& bird : ls_birds) // Loop through all the birds in the list, not just the first one
+        for (auto& obj : ls_birdsAndPigs) // Loop through all the dynamic objects in the list, not just the first one
         {
-            bird -> render(window);
+            obj->render(window);
         }
 
         window.display();
