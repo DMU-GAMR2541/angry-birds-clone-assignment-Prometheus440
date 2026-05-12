@@ -46,6 +46,8 @@ int main() {
         ls_birds.push_back(std::unique_ptr<Bird>(new Bird(a_birdSpritePaths[i], a_birdXPos[i], 550.0f, a_birdScales[i])));
     }
 
+    // === Mixed container of dynamic objects
+
     //  === Non-interactables ===
     std::vector<std::unique_ptr<NonInteractable>> v_scenery;
     

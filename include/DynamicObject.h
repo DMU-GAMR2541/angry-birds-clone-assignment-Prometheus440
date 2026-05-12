@@ -8,7 +8,7 @@ protected:
 	sf::Texture sf_tex;
 
 public:
-	// Constructor
+	// Shared constructor
 	DynamicObject(std::string texPath, float x, float y, float scale)
 	{
 		if (!sf_tex.loadFromFile(texPath)) // Load texture from file path, if fail then message
@@ -25,17 +25,19 @@ public:
 	// Default destructor
 	~DynamicObject() override = default;
 
-
-
 	// Override the pure virtual functions from GameObject
 	void update() override
 	{
-		// Implementation for updating the dynamic object
-	}
-	void render(sf::RenderWindow& sf_window) override
-	{
-		// Implementation for rendering the dynamic object
+		
 	}
 
-	// Pig bird and catapult all have new constructor and render
+	void render(sf::RenderWindow& sf_window) override
+	{
+		sf_window.draw(sp_rendered);
+	}
+
+	void setPosition(float x, float y)
+	{
+		sp_rendered.setPosition(x, y);
+	}
 };
