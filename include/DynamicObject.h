@@ -16,4 +16,6 @@ class DynamicObject : public virtual GameObject{ // Virtual to stop ambiguity fo
 	{
 		// Implementation for rendering the dynamic object
 	}
+
+	// Pig bird and catapult all have new constructor and render
 };

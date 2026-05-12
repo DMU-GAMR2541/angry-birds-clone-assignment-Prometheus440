@@ -1,14 +1,14 @@
 #include <SFML/Graphics.hpp>
 #include <box2d/box2d.h>
 #include <iostream>
+#include <list>
 
 #include "Pig.h"
 #include "Bird.h"
 #include "Catapult.h"
-#include <list>
+#include "NonInteractable.h"
 
-
-// Upcasting example function
+// Upcasting function
 void listDynamics(DynamicObject* obj, std::string name)
 {
     // Gets all types of dynamic objects and prints them out
@@ -16,10 +16,15 @@ void listDynamics(DynamicObject* obj, std::string name)
 }
 
 int main() {
-    
-	bool b_isDragging = false; // Added for mouse dragging example
+    /*
+    *       VARIABLES
+    */
+    // === Input variables ===
+	bool b_isDragging = false; // For mouse dragging
+    bool b_birdFired = false; // To prevent sprites being deleted before any launch
+    b2Vec2 b2_dragStartPos(0.0f, 0.0f); // To set birds start vector for relative launches
 
-    // Pointers
+    // === Pointer variables ===
     std::unique_ptr<Pig> pig1(new Pig(3, "../assets/Ang_Birds/pig.png", 400.0f, 300.0f, 0.04f));
     std::unique_ptr<Pig> pig2(new Pig(3, "../assets/Ang_Birds/pig_helmet.png", 600.0f, 350.0f, 0.225f));
     std::unique_ptr<Catapult> catapult(new Catapult("../assets/Ang_Birds/Catapult.png", 400.0f, 480.0f, 0.4f));
@@ -28,22 +33,37 @@ int main() {
     listDynamics(pig1.get(), "Pig");
     listDynamics(catapult.get(), "Catapult");
 
-
-    // List of birds
+    // === Birds ===
     std::list<std::unique_ptr<Bird>> ls_birds; // Make a list of the unique bird pointers
 
     // Arrays for looping
     std::string a_birdSpritePaths[3] = { "../assets/Ang_Birds/red.png", "../assets/Ang_Birds/yellow.png", "../assets/Ang_Birds/blue.png"};
-    float a_birdXPos[3] = {100.0f, 300.0f, 500.0f};
+    float a_birdXPos[3] = {250.0f, 300.0f, 500.0f};
     float a_birdScales[3] = {0.025f, 0.075f, 0.065f};
-
+    
     for (int i = 0; i < 3; i++)
     {
         ls_birds.push_back(std::unique_ptr<Bird>(new Bird(a_birdSpritePaths[i], a_birdXPos[i], 550.0f, a_birdScales[i])));
     }
 
+    //  === Non-interactables ===
+    std::vector<std::unique_ptr<NonInteractable>> v_scenery;
+    
+    // Arrays for looping
+    std::string a_scenerySpritePaths[4] = { "../assets/Ang_Birds/bush.png", "../assets/Ang_Birds/bush.png", "../assets/Ang_Birds/bush.png", "../assets/Ang_Birds/bush.png"};
+    float a_sceneryXPos[4] = { 10.0f, 350.0f, 800.0f, 660.0f };
 
-    // --- 1. WINDOW SETUP ---
+    for (int i = 0; i < 3; i++)
+    {
+        v_scenery.push_back(std::unique_ptr<NonInteractable>(new NonInteractable(a_scenerySpritePaths[i], a_sceneryXPos[i], 560.0f, 0.04f)));
+    }
+
+
+
+
+    /*
+    *       WINDOW SET UP
+    */
     sf::RenderWindow window(sf::VideoMode(800, 600), "Annoyed_Flocks");
     window.setFramerateLimit(60);
 
@@ -127,9 +147,12 @@ int main() {
     sf_ballVisual.setOrigin(15.0f, 15.0f);
     sf_ballVisual.setFillColor(sf::Color::Yellow);
 
-    // --- 7. MAIN LOOP ---
 
-    // ==== PHYSICS SET UP ====
+
+
+    /*
+    *       BOX2D SET UP    
+    */
 
     // === pig1 ===
     b2Vec2 b2_pig1PosIn(400.0f / SCALE, 300.0f / SCALE); // Convert from pixels to meters for Box2D
@@ -154,8 +177,31 @@ int main() {
     b2_pig1Body->CreateFixture(&b2_pig1FixtureDef); // Attach fixture to body
 
 
-    // === bird ===
-    b2Vec2 b2_redBirdPosIn(100.0f / SCALE, 560.0f / SCALE); // Convert from pixels to meters for Box2D
+    // === pig2 ===
+    b2Vec2 b2_pig2PosIn(400.0f / SCALE, 300.0f / SCALE); // Convert from pixels to meters for Box2D
+
+    b2Vec2 b2_pig2Pos; // position in game world
+    b2BodyDef b2_pig2Def; // Body definition (sets initial position and type)
+    b2FixtureDef b2_pig2FixtureDef; // Fixture definition (attaches shape to body and adds friction, density and bounce)
+    b2Body* b2_pig2Body; // Body (physical instance in world)
+    b2CircleShape b2_pig2Circle; // Shape of object (geometry to define collision boundaries)
+    b2_pig2Circle.m_radius = 30.0f / SCALE; // Set radius of the circle shape for the pig
+
+    b2_pig2Def.type = b2_dynamicBody; // Set the body type to dynamic for physics simulation
+    b2_pig2Def.position = b2_pig2PosIn;
+    b2_pig2Body = world.CreateBody(&b2_pig2Def); // Create body in world
+
+    // Set up fixture
+    b2_pig2FixtureDef.shape = &b2_pig2Circle; // Set the shape of the fixture to the circle
+    b2_pig2FixtureDef.density = 1.0f; // Set density
+    b2_pig2FixtureDef.friction = 0.3f; // Set friction
+    b2_pig2FixtureDef.restitution = 0.5f; // Set bounciness
+
+    b2_pig2Body->CreateFixture(&b2_pig2FixtureDef); // Attach fixture to body
+
+
+    // === red bird ===
+    b2Vec2 b2_redBirdPosIn(250.0f / SCALE, 560.0f / SCALE); // Convert from pixels to meters for Box2D
 
     b2Vec2 b2_redBirdPos; // position in game world
     b2BodyDef b2_redBirdDef; // Body definition (sets initial position and type)
@@ -175,6 +221,7 @@ int main() {
     b2_redBirdFixtureDef.restitution = 0.5f; // Set bounciness
 
     b2_redBirdBody->CreateFixture(&b2_redBirdFixtureDef); // Attach fixture to body
+
 
     // === yellow bird ===
     b2Vec2 b2_yellowBirdPosIn(300.0f / SCALE, 560.0f / SCALE); // Convert from pixels to meters for Box2D
@@ -198,6 +245,7 @@ int main() {
     b2_yellowBirdFixtureDef.restitution = 0.5f; // Set bounciness
 
     b2_yellowBirdBody->CreateFixture(&b2_yellowBirdFixtureDef); // Attach fixture to body
+
 
     // === blue bird ===
     b2Vec2 b2_blueBirdPosIn(500.0f / SCALE, 560.0f / SCALE); // Convert from pixels to meters for Box2D
@@ -224,13 +272,14 @@ int main() {
 
 
 
+
+    /*
+    *       EVENTS
+    */
+    // For mouse input
     b2Body* a_birdBodies[3] = {b2_redBirdBody, b2_yellowBirdBody, b2_blueBirdBody}; // Array to move through to get bird
-    b2Vec2 a_birdStartPos[3] = {b2_redBirdPosIn, b2_yellowBirdPosIn, b2_blueBirdPosIn}; // Array to move through to get launch vec
     int i_currentBird = 0; // Start at element 0 in array
 
-
-
-    // ==== WHILE WINDOW IS OPEN ====
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -252,30 +301,50 @@ int main() {
                 }
             }
 
-            //// Added for impulse example when E is pressed
-            //if (event.type == sf::Event::KeyPressed)
-            //{
-            //    if (event.key.code == sf::Keyboard::E)
-            //    {
-            //        // Calculate launch vector (target pos - origin pos)
-            //        b2Vec2 b2_originPos = b2_redBirdBody->GetPosition();
-            //        b2Vec2 b2_targetPos = b2_pig1Body->GetPosition(); // Target is pig1
+            // Added for impulse example when E is pressed
+            if (event.type == sf::Event::KeyPressed)
+            {
+                if (event.key.code == sf::Keyboard::E)
+                {
+                    // Calculate launch vector (target pos - origin pos)
+                    b2Vec2 b2_originPos = b2_redBirdBody->GetPosition();
+                    b2Vec2 b2_targetPos = b2_pig1Body->GetPosition(); // Target is pig1
 
-            //        b2Vec2 b2_launchVec; // Making launch direction
-            //        b2_launchVec.x = b2_targetPos.x - b2_originPos.x;
-            //        b2_launchVec.y = b2_targetPos.y - b2_originPos.y;
+                    b2Vec2 b2_launchVec; // Making launch direction
+                    b2_launchVec.x = b2_targetPos.x - b2_originPos.x;
+                    b2_launchVec.y = b2_targetPos.y - b2_originPos.y;
 
-            //        // Impulse
-            //        float f_speedMultiplier = 3.0f;
-            //        b2Vec2 b2_impulseMagnitude(b2_launchVec.x * f_speedMultiplier, b2_launchVec.y * f_speedMultiplier);
-            //        b2_redBirdBody->ApplyLinearImpulseToCenter(b2_impulseMagnitude, true);
-            //    }
-            //}
+                    // Impulse
+                    float f_speedMultiplier = 3.0f;
+                    b2Vec2 b2_impulseMagnitude(b2_launchVec.x * f_speedMultiplier, b2_launchVec.y * f_speedMultiplier);
+                    b2_redBirdBody->ApplyLinearImpulseToCenter(b2_impulseMagnitude, true);
+                }
+            }
 
-            // Yellow bird follows mouse cursor when mouse left click is pressed
+            // Bird follows mouse cursor when mouse left click is pressed
             if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
             {
+                // Remove bird 1 after its launched and bird 2 has been clicked
+
+                if (b_birdFired && !ls_birds.empty())
+                {
+                    std::cout << "Entered loop" << std::endl;
+                    // Destory box2D of the bird first
+                    world.DestroyBody(a_birdBodies[i_currentBird]);
+                    a_birdBodies[i_currentBird] = nullptr; // Can't access pointer 
+
+                    // Destroy bird sprite
+                    ls_birds.pop_front();
+                    i_currentBird++;
+                    b_birdFired = false;
+                }
+                if (ls_birds.empty())
+                {
+                    return 0;
+                }
+
 				b_isDragging = true; // Start dragging when left mouse button is pressed
+                b2_dragStartPos = a_birdBodies[i_currentBird]->GetPosition();
 
                 // Make body static
 				a_birdBodies[i_currentBird]->SetType(b2_staticBody);
@@ -300,23 +369,25 @@ int main() {
 				b2Vec2 b2_currentPos = a_birdBodies[i_currentBird]->GetPosition(); // Get current position of  bird
 
                 // Slingshot vector (start - current)
-                b2Vec2 b2_launchVec = a_birdStartPos[i_currentBird] - b2_currentPos;
+                b2Vec2 b2_launchVec = b2_dragStartPos - b2_currentPos;
                 
                 // Impulse
                 float f_speedMultiplier = 5.0f;
                 b2Vec2 b2_impulseMagnitude(b2_launchVec.x * f_speedMultiplier, b2_launchVec.y * f_speedMultiplier);
                 a_birdBodies[i_currentBird]->ApplyLinearImpulseToCenter(b2_impulseMagnitude, true);
 
-                // Remove bird from list and move to next bird
-                if (!ls_birds.empty())
-                {
-                    ls_birds.pop_front();
-                    i_currentBird++;
-                }
+                b_birdFired = true;
             }
         }
 
-        // Update Physics
+
+
+
+        /*
+        *       UPDATE PHYSICS
+        */
+
+        // === Given objects ===
         world.Step(1.0f / 60.0f, 8, 3);
 
         //All of the visuals needs to be synced with the physics.
@@ -338,11 +409,12 @@ int main() {
 
 
         // === Added objects ===
+        // Pigs 
         pig1->setPosition(b2_pig1Body->GetPosition().x * SCALE, b2_pig1Body->GetPosition().y * SCALE);
+        pig2->setPosition(b2_pig2Body->GetPosition().x * SCALE, b2_pig2Body->GetPosition().y * SCALE);
 
-
+        // Birds
         auto it = ls_birds.begin(); // iterator to move through bird list, starting at first bird
-
         for (int i = i_currentBird; i < 3 && it != ls_birds.end(); i++) // Start at current bird as they are removed when fired, and make sure list is not empty
         {
             (*it)->setPosition(a_birdBodies[i]->GetPosition().x* SCALE, a_birdBodies[i]->GetPosition().y* SCALE); // Set pos of bird
@@ -350,16 +422,30 @@ int main() {
         }
 
 
+
+
+
+        /*
+        *       RENDERING
+        */
+
+        // === Scenery ===
+        // Draw first so that its in the background
+        for (auto& scenery : v_scenery) // Loop through all the scenery in the vector, not just the first one
+        {
+            scenery->render(window);
+        }
+
         // === Given objects ===
         window.draw(sf_groundVisual);
         window.draw(sf_wallVisual);
         window.draw(sf_plankVisual);
         window.draw(sf_ballVisual);
 
-        // Render sprites
+        // === Added objects ===
+		catapult->render(window);
         pig1->render(window);
         pig2->render(window);
-		catapult->render(window);
         
         for (auto& bird : ls_birds) // Loop through all the birds in the list, not just the first one
         {
