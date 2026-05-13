@@ -25,7 +25,7 @@ int main() {
     b2Vec2 b2_dragStartPos(0.0f, 0.0f); // To set birds start vector for relative launches
 
     // === Pigs + birds containers ===
-    std::list<std::unique_ptr<DynamicObject>> ls_birdsAndPigs; // Make a list because the unique bird pointers need to be removed
+    std::multimap<std::string, std::unique_ptr<DynamicObject>> mm_dynamicObjects; //multimap, key is a string which looks for the type, the value is the unique pointer
     std::string a_birdSpritePaths[3] = { "../assets/Ang_Birds/red.png", "../assets/Ang_Birds/yellow.png", "../assets/Ang_Birds/blue.png"};
     std::string a_pigSpritePaths[2] = { "../assets/Ang_Birds/pig.png", "../assets/Ang_Birds/pig_helmet.png" };
 
@@ -38,12 +38,12 @@ int main() {
     // Bird loop
     for (int i = 0; i < 3; i++)
     {
-        ls_birdsAndPigs.push_back(std::unique_ptr<DynamicObject>(new Bird(a_birdSpritePaths[i], a_birdXPos[i], 550.0f, a_birdScales[i])));
+        mm_dynamicObjects.insert({"Bird", std::unique_ptr<DynamicObject>(new Bird(a_birdSpritePaths[i], a_birdXPos[i], 550.0f, a_birdScales[i]))});
     }
     // Pig loop
     for (int i = 0; i < 2; i++)
     {
-        ls_birdsAndPigs.push_back(std::unique_ptr<DynamicObject>(new Pig(1, a_pigSpritePaths[i], a_pigXPos[i], 550.0f, a_pigScales[i])));
+        mm_dynamicObjects.insert({"Pig", std::unique_ptr<DynamicObject>(new Pig(1, a_pigSpritePaths[i], a_pigXPos[i], 550.0f, a_pigScales[i]))});
     }
 
     // === catapult ===
@@ -332,19 +332,22 @@ int main() {
             {
                 // Remove bird 1 after its launched and bird 2 has been clicked
 
-                if (b_birdFired && !ls_birdsAndPigs.empty())
+                if (b_birdFired && mm_dynamicObjects.count("Bird") > 0)
                 {
                     std::cout << "Entered loop" << std::endl;
+
                     // Destory box2D of the bird first
                     world.DestroyBody(a_birdBodies[i_currentBird]);
                     a_birdBodies[i_currentBird] = nullptr; // Can't access pointer 
 
-                    // Destroy bird sprite
-                    ls_birdsAndPigs.pop_front();
+                    // Destroy bird sprite second from multimap
+                    // Current bird is the one at the front, so can just destroy first bird
+                    auto it = mm_dynamicObjects.find("Bird");
+                    mm_dynamicObjects.erase(it);
                     i_currentBird++;
                     b_birdFired = false;
                 }
-                if (ls_birdsAndPigs.empty())
+                if (mm_dynamicObjects.count("Bird") == 0)
                 {
                     return 0;
                 }
@@ -416,17 +419,20 @@ int main() {
 
         // === Added objects ===
         // Birds
-        auto it = ls_birdsAndPigs.begin(); // iterator to move through dynamic objects list, starting at first element
+        auto birdRange = mm_dynamicObjects.equal_range("Bird"); // Return 2 iterators -> first is first bird, second is one past last bird. Range of these iterators are all birds
+        int i = i_currentBird; // Start at current bird
 
-        // Start at current bird
-        // int i loops through a_birdBodies array
-        // it iterates through ls_birdsAndPigs list
-        for (int i = i_currentBird; i < 3 && it != ls_birdsAndPigs.end(); i++) // Because only 3 birds, only go to 3rd element then break
+        // Iterator starts at first bird
+        // Moves along until it reaches the second bound of the range (non-bird)
+        for (auto it = birdRange.first; it != birdRange.second && i < 3; i++)
         {
             // Get the DynamicObject* pointer
             // If the DynamicObject* is a Bird*, make it into Bird*
             // If the DynamicObject* is a Pig*, make it nullptr
-            Bird* bird = dynamic_cast<Bird*>(it->get());
+            
+            // It points to an entry in multimap, { "Key", std::unique_putr<DynamicObject> }
+            // it->second.get() to get the pointer
+            Bird* bird = dynamic_cast<Bird*>(it->second.get());
 
             if (bird != nullptr) // if it is Bird*
             {
@@ -436,23 +442,31 @@ int main() {
             ++it;
         }
 
+
+
         // Pigs
         b2Body* a_pigBodies[2] = {b2_pig1Body, b2_pig2Body};
         int i_pigIndex = 0;
+        auto pigRange = mm_dynamicObjects.equal_range("Pig"); // Return 2 iterators -> first is first pig, second is one past last pig. Range of these iterators are all pigs
 
-        // Loop through the whole of ls_birdsAndPigs because birds are removed
-        for (auto& obj : ls_birdsAndPigs)
+        // Iterator starts at first pig
+        // Moves along until it reaches the second bound of the range (non-pig)
+        for (auto it = pigRange.first; it != pigRange.second && i_pigIndex < 2; it++)
         {
             // Get the DynamicObject* pointer
             // If the DynamicObject* is a Pig*, make it into Pig*
             // If the DynamicObject* is a Bird*, make it nullptr
-            Pig* pig = dynamic_cast<Pig*>(obj.get());
 
-            if (pig != nullptr && i_pigIndex < 2)
+            // It points to an entry in multimap, { "Key", std::unique_putr<DynamicObject> }
+            // it->second.get() to get the pointer
+            Pig* pig = dynamic_cast<Pig*>(it->second.get());
+
+            if (pig != nullptr) // if it is Pig*
             {
-                pig->setPosition(a_pigBodies[i_pigIndex]->GetPosition().x* SCALE, a_pigBodies[i_pigIndex]->GetPosition().y* SCALE); // Set position
-                ++i_pigIndex;
+                pig->setPosition(a_pigBodies[i_pigIndex]->GetPosition().x * SCALE, a_pigBodies[i_pigIndex]->GetPosition().y * SCALE); // Set position
+                i_pigIndex++;
             }
+
         }
 
 
@@ -478,9 +492,9 @@ int main() {
         // === Added objects ===
 		catapult->render(window);
         
-        for (auto& obj : ls_birdsAndPigs) // Loop through all the dynamic objects in the list, not just the first one
+        for (auto& obj : mm_dynamicObjects) // Loop through all the dynamic objects in the list, not just the first one
         {
-            obj->render(window);
+            obj.second->render(window); // obj.second to render the object not the key
         }
 
         window.display();
