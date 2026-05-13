@@ -25,16 +25,16 @@ int main() {
     // === Input variables ===
 	bool b_isDragging = false; // For mouse dragging
     bool b_birdFired = false; // To prevent sprites being deleted before any launch
-    b2Vec2 b2_dragStartPos(0.0f, 0.0f); // To set birds start vector for relative launches
+    b2Vec2 b2_dragStartPos(100.0f, 300.0f); // To set birds start vector for launches around the catapult
 
 
     // === Arrays ===
     std::string a_birdSpritePaths[3] = { "../assets/Ang_Birds/red.png", "../assets/Ang_Birds/yellow.png", "../assets/Ang_Birds/blue.png"};
     std::string a_pigSpritePaths[3] = { "../assets/Ang_Birds/pig.png", "../assets/Ang_Birds/pig_helmet.png", "../assets/Ang_Birds/pigKing.png"};
 
-    float a_birdXPos[3] = {250.0f, 300.0f, 500.0f};
+    float a_birdXPos[3] = {250.0f, 200.0f, 100.0f};
     float a_birdScales[3] = {0.025f, 0.075f, 0.065f};
-    float a_pigXPos[3] = { 400.0f, 600.0f, 800.0f};
+    float a_pigXPos[3] = { 400.0f, 400.0f, 400.0f};
     float a_pigScales[3] = { 0.04f, 0.225f, 0.6f};
 
 
@@ -54,9 +54,22 @@ int main() {
 
     // === catapult ===
     std::unique_ptr<Catapult> catapult(new Catapult("../assets/Ang_Birds/Catapult.png", 100.0f, 480.0f, 0.4f));
+    //Box2D works in meters. SFML works in pixels.
+    const float SCALE = 30.0f;
+    const b2Vec2 b2_catapultLaunchPos(100.0f/SCALE, 400.0f/SCALE);
 
     // Upcasting
     listDynamics(catapult.get(), "Catapult");
+
+
+    // === WALLS ===
+    struct Plank
+    {
+        b2Body* body;
+        sf::RectangleShape visual;
+    };
+
+    std::vector<Plank> v_planks;
 
 
     //  === Non-interactables ===
@@ -81,8 +94,6 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Annoyed_Flocks");
     window.setFramerateLimit(60);
 
-    //Box2D works in meters. SFML works in pixels.
-    const float SCALE = 30.0f;
 
     //Can set a definition for PI.
     const float PI = 3.1415927;
@@ -92,6 +103,8 @@ int main() {
     b2World world(b2_gravity);
     world.SetContactListener(&c);
 
+
+    // === GROUND === 
     //Setup ground for the circle to move / bounce on.
     //Needs to have a body definition and a body. We use a raw pointer for the b2Body as Box2d does the management itself.
     //A body can be defined as having a position, velocity, and mass. 
@@ -109,58 +122,41 @@ int main() {
     sf_groundVisual.setOrigin(400.0f, 10.0f);
     sf_groundVisual.setFillColor(sf::Color(34, 139, 34)); // Forest Green
 
-    //Setting up a wall for the ball to hit.
-    b2BodyDef b2_wallDef;
-    b2_wallDef.position.Set(750.0f / SCALE, 500.0f / SCALE);
-    b2Body* b2_wallBody = world.CreateBody(&b2_wallDef);
 
-
-    b2PolygonShape b2_wallBox;
-    b2_wallBox.SetAsBox(10.0f / SCALE, 80.0f / SCALE);
-    b2_wallBody->CreateFixture(&b2_wallBox, 0.0f);
-
-    sf::RectangleShape sf_wallVisual(sf::Vector2f(20.0f, 160.0f));
-    sf_wallVisual.setOrigin(10.0f, 80.0f);
-    sf_wallVisual.setFillColor(sf::Color::Red);
-
+    // === PLANKS ===
     //Rather than having an immovable wall, we can use the dynamic body type to create one that can have velocity etc.
-    b2BodyDef b2_plankDef;
+    float a_plankX[3] = { 550.0f, 650.0f, 750.0f };
+    float a_plankY[3] = { 450.0f, 450.0f, 450.0f };
 
-    b2_plankDef.type = b2_dynamicBody;
-    b2_plankDef.position.Set(550.0f / SCALE, 450.0f / SCALE);
-    b2Body* b2_plankBody = world.CreateBody(&b2_plankDef);
+    for (int i = 0; i < 3; i++)
+    {
+        // Body definition
+        b2BodyDef plankDef;
+        plankDef.type = b2_dynamicBody;
+        plankDef.position.Set(a_plankX[i] / SCALE, a_plankY[i] / SCALE);
 
-    b2PolygonShape b2_plankBox;
-    b2_plankBox.SetAsBox(10.0f / SCALE, 60.0f / SCALE);
+        b2Body* plankBody = world.CreateBody(&plankDef);
 
-    b2FixtureDef b2_plankFixture;
-    b2_plankFixture.shape = &b2_plankBox;
-    b2_plankFixture.density = 1.5f;   // Light wood
-    b2_plankFixture.friction = 0.3f;
-    b2_plankBody->CreateFixture(&b2_plankFixture);
+        // Shape
+        b2PolygonShape plankBox;
+        plankBox.SetAsBox(10.0f / SCALE, 60.0f / SCALE);
 
-    sf::RectangleShape sf_plankVisual(sf::Vector2f(20.0f, 120.0f));
-    sf_plankVisual.setOrigin(10.0f, 60.0f);
-    sf_plankVisual.setFillColor(sf::Color(139, 69, 19)); // Brown
+        // Fixture
+        b2FixtureDef plankFixture;
+        plankFixture.shape = &plankBox;
+        plankFixture.density = 1.5f;
+        plankFixture.friction = 0.3f;
 
-    //Create a ball that is fired when space is pressed. We need to first have a dynamic ball to do it.
-    b2BodyDef b2_ballDef;
-    b2_ballDef.type = b2_dynamicBody;
-    b2_ballDef.position.Set(100.0f / SCALE, 500.0f / SCALE);
-    b2Body* b2_ballBody = world.CreateBody(&b2_ballDef);
+        plankBody->CreateFixture(&plankFixture);
 
-    b2CircleShape b2_circleShape;
-    b2_circleShape.m_radius = 15.0f / SCALE;
+        // SFML visual
+        sf::RectangleShape plankVisual(sf::Vector2f(20.0f, 120.0f));
+        plankVisual.setOrigin(10.0f, 60.0f);
+        plankVisual.setFillColor(sf::Color(139, 69, 19));
 
-    b2FixtureDef b2_ballFixture;
-    b2_ballFixture.shape = &b2_circleShape;
-    b2_ballFixture.density = 1.0f;
-    b2_ballFixture.restitution = 0.5f; // Bounciness
-    b2_ballBody->CreateFixture(&b2_ballFixture);
-
-    sf::CircleShape sf_ballVisual(15.0f);
-    sf_ballVisual.setOrigin(15.0f, 15.0f);
-    sf_ballVisual.setFillColor(sf::Color::Yellow);
+        // Store in vector
+        v_planks.push_back({ plankBody, plankVisual });
+    }
 
 
 
@@ -170,8 +166,9 @@ int main() {
     */
 
     // === Birds ===
-    float a_birdPhysX[3] = { 250.0f/SCALE, 300.0f / SCALE, 500.0f / SCALE };
+    float a_birdPhysX[3] = { 250.0f/SCALE, 200.0f / SCALE, 100.0f / SCALE };
     float a_birdPhysY[3] = { 560.0f/SCALE, 560.0f / SCALE, 560.0f / SCALE };
+    float a_birdMass[3] = { 1.0f, 2.0f, 0.5f };
     uintptr_t a_birdID[3] = { 100, 100, 100 };
 
     auto birdSetupRange = mm_dynamicObjects.equal_range("Bird");
@@ -180,7 +177,7 @@ int main() {
     // Create all bird bodies from the range of birds in the multimap
     for (auto birdIt = birdSetupRange.first; birdIt != birdSetupRange.second; birdIt++)
     {
-        birdIt->second->box2DSetup(world, a_birdPhysX[b_idx], a_birdPhysY[b_idx], 30.0f/SCALE, 1.0f, 0.3f, 0.5f, a_birdID[b_idx]);
+        birdIt->second->box2DSetup(world, a_birdPhysX[b_idx], a_birdPhysY[b_idx], 30.0f/SCALE, a_birdMass[b_idx], 0.3f, 0.5f, a_birdID[b_idx]);
         b_idx++;
     }
 
@@ -228,21 +225,6 @@ int main() {
             if (event.type == sf::Event::Closed)
                 window.close();
 
-            // INPUT HANDLING: Press SPACE to launch
-            if (event.type == sf::Event::KeyPressed) {
-                if (event.key.code == sf::Keyboard::Space) {
-                    // Reset position of the ball so that it can be fired again from its original poisition.
-                    b2_ballBody->SetTransform(b2Vec2(100.0f / SCALE, 500.0f / SCALE), 0);
-                    b2_ballBody->SetLinearVelocity(b2Vec2(0, 0));
-                    b2_ballBody->SetAngularVelocity(0);
-
-                    // Apply impulse (X-axis, Y-axis) Negative Y is UP in Box2D because gravity is positive.
-                    b2_ballBody->ApplyLinearImpulse(b2Vec2(5.0f, -5.0f), b2_ballBody->GetWorldCenter(), true);
-
-                    std::cout << "Firing!!!!" << std::endl;
-                }
-            }
-
             // Bird follows mouse cursor when mouse left click is pressed
             if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
             {
@@ -269,12 +251,14 @@ int main() {
                 }
 
 				b_isDragging = true; // Start dragging when left mouse button is pressed
-                b2_dragStartPos = a_birdBodies[i_currentBird]->GetPosition();
 
                 // Make body static
 				a_birdBodies[i_currentBird]->SetType(b2_staticBody);
                 a_birdBodies[i_currentBird]->SetLinearVelocity(b2Vec2(0, 0));
+                a_birdBodies[i_currentBird]->SetTransform(b2_catapultLaunchPos, 0);
                 a_birdBodies[i_currentBird]->SetAngularVelocity(0);
+               
+               b2_dragStartPos = b2_catapultLaunchPos;
             }
 
             if (event.type == sf::Event::MouseMoved && b_isDragging)
@@ -297,7 +281,7 @@ int main() {
                 b2Vec2 b2_launchVec = b2_dragStartPos - b2_currentPos;
                 
                 // Impulse
-                float f_speedMultiplier = 5.0f;
+                float f_speedMultiplier = 15.0f;
                 b2Vec2 b2_impulseMagnitude(b2_launchVec.x * f_speedMultiplier, b2_launchVec.y * f_speedMultiplier);
                 a_birdBodies[i_currentBird]->ApplyLinearImpulseToCenter(b2_impulseMagnitude, true);
 
@@ -316,17 +300,15 @@ int main() {
         world.Step(1.0f / 60.0f, 8, 3);
 
         //All of the visuals needs to be synced with the physics.
-
-        sf_ballVisual.setPosition(b2_ballBody->GetPosition().x * SCALE, b2_ballBody->GetPosition().y * SCALE);
-        sf_ballVisual.setRotation(b2_ballBody->GetAngle() * (180.0f / PI));
-
         //Static objects usually don't move, but we set the position once.
         sf_groundVisual.setPosition(b2_groundBody->GetPosition().x * SCALE, b2_groundBody->GetPosition().y * SCALE);
-        sf_wallVisual.setPosition(b2_wallBody->GetPosition().x * SCALE, b2_wallBody->GetPosition().y * SCALE);
 
         // Dynamic wall.
-        sf_plankVisual.setPosition(b2_plankBody->GetPosition().x * SCALE, b2_plankBody->GetPosition().y * SCALE);
-        sf_plankVisual.setRotation(b2_plankBody->GetAngle() * (180.0f / PI));
+        for (auto& plank : v_planks) // Loop through all the planks in the vector, not just the first one
+        {
+            plank.visual.setPosition(plank.body->GetPosition().x * SCALE,plank.body->GetPosition().y * SCALE);
+            plank.visual.setRotation(plank.body->GetAngle() * (180.0f / PI));
+        }
 
       
         //Render all of the content at each frame. Remember you need to clear the screen each iteration or artefacts remain.
@@ -401,9 +383,11 @@ int main() {
 
         // === Given objects ===
         window.draw(sf_groundVisual);
-        window.draw(sf_wallVisual);
-        window.draw(sf_plankVisual);
-        window.draw(sf_ballVisual);
+
+        for (auto& plank : v_planks)
+        {
+            window.draw(plank.visual);
+        }
 
         // === Added objects ===
 		catapult->render(window);

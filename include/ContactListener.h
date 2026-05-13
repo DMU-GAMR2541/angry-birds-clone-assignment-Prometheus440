@@ -40,7 +40,7 @@ class ContactListener : public b2ContactListener {
 
     // Called when two fixtures cease to touch
     void EndContact(b2Contact* contact) override {
-        std::cout << "Collision Ended" << std::endl;
+       // std::cout << "Collision Ended" << std::endl;
     }
 
     std::set<uintptr_t> getPointer() {
