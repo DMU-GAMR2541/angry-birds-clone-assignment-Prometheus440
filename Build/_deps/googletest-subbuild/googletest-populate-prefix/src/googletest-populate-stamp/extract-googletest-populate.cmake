@@ -1,12 +1,12 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file LICENSE.rst or https://cmake.org/licensing for details.
+# file Copyright.txt or https://cmake.org/licensing for details.
 
-cmake_minimum_required(VERSION ${CMAKE_VERSION}) # this file comes with cmake
+cmake_minimum_required(VERSION 3.5)
 
 # Make file names absolute:
 #
-get_filename_component(filename "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-subbuild/googletest-populate-prefix/src/03597a01ee50ed33e9dfd640b249b4be3799d395.zip" ABSOLUTE)
-get_filename_component(directory "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-src" ABSOLUTE)
+get_filename_component(filename "H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-subbuild/googletest-populate-prefix/src/03597a01ee50ed33e9dfd640b249b4be3799d395.zip" ABSOLUTE)
+get_filename_component(directory "H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-src" ABSOLUTE)
 
 message(VERBOSE "extracting...
      src='${filename}'
@@ -28,8 +28,8 @@ file(MAKE_DIRECTORY "${ut_dir}")
 
 # Extract it:
 #
-message(VERBOSE "extracting... [tar xf]")
-execute_process(COMMAND ${CMAKE_COMMAND} -E tar xf ${filename} --touch
+message(VERBOSE "extracting... [tar xfz]")
+execute_process(COMMAND ${CMAKE_COMMAND} -E tar xfz ${filename} --touch
   WORKING_DIRECTORY ${ut_dir}
   RESULT_VARIABLE rv
 )

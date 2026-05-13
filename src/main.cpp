@@ -7,6 +7,7 @@
 #include "Bird.h"
 #include "Catapult.h"
 #include "NonInteractable.h"
+#include "ContactListener.h"
 
 // Upcasting function
 void listDynamics(DynamicObject* obj, std::string name)
@@ -27,27 +28,28 @@ int main() {
     // === Pigs + birds containers ===
     std::multimap<std::string, std::unique_ptr<DynamicObject>> mm_dynamicObjects; //multimap, key is a string which looks for the type, the value is the unique pointer
     std::string a_birdSpritePaths[3] = { "../assets/Ang_Birds/red.png", "../assets/Ang_Birds/yellow.png", "../assets/Ang_Birds/blue.png"};
-    std::string a_pigSpritePaths[2] = { "../assets/Ang_Birds/pig.png", "../assets/Ang_Birds/pig_helmet.png" };
+    std::string a_pigSpritePaths[3] = { "../assets/Ang_Birds/pig.png", "../assets/Ang_Birds/pig_helmet.png", "../assets/Ang_Birds/pigKing.png"};
 
     // Arrays for looping
     float a_birdXPos[3] = {250.0f, 300.0f, 500.0f};
     float a_birdScales[3] = {0.025f, 0.075f, 0.065f};
-    float a_pigXPos[2] = { 400.0f, 600.0f};
-    float a_pigScales[2] = { 0.04f, 0.225f};
+    float a_pigXPos[3] = { 400.0f, 600.0f, 800.0f};
+    float a_pigScales[3] = { 0.04f, 0.225f, 0.6f};
+    float a_pigHealth[3] = { 1, 2, 3 };
 
     // Bird loop
     for (int i = 0; i < 3; i++)
     {
-        mm_dynamicObjects.insert({"Bird", std::unique_ptr<DynamicObject>(new Bird(a_birdSpritePaths[i], a_birdXPos[i], 550.0f, a_birdScales[i]))});
+        mm_dynamicObjects.insert({"Bird", std::unique_ptr<DynamicObject>(new Bird(a_birdSpritePaths[i], a_birdXPos[i], 300.0f, a_birdScales[i]))});
     }
     // Pig loop
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < 3; i++)
     {
-        mm_dynamicObjects.insert({"Pig", std::unique_ptr<DynamicObject>(new Pig(1, a_pigSpritePaths[i], a_pigXPos[i], 550.0f, a_pigScales[i]))});
+        mm_dynamicObjects.insert({"Pig", std::unique_ptr<DynamicObject>(new Pig(1, a_pigSpritePaths[i], a_pigXPos[i], 300.0f, a_pigScales[i]))});
     }
 
     // === catapult ===
-    std::unique_ptr<Catapult> catapult(new Catapult("../assets/Ang_Birds/Catapult.png", 400.0f, 480.0f, 0.4f));
+    std::unique_ptr<Catapult> catapult(new Catapult("../assets/Ang_Birds/Catapult.png", 100.0f, 480.0f, 0.4f));
 
     // Upcasting
     listDynamics(catapult.get(), "Catapult");
@@ -64,6 +66,7 @@ int main() {
         v_scenery.push_back(std::unique_ptr<NonInteractable>(new NonInteractable(a_scenerySpritePaths[i], a_sceneryXPos[i], 560.0f, 0.04f)));
     }
 
+    ContactListener c;
 
 
 
@@ -82,6 +85,7 @@ int main() {
     //setup world.
     b2Vec2 b2_gravity(0.0f, 9.8f); // Earth-like gravity
     b2World world(b2_gravity);
+    world.SetContactListener(&c);
 
     //Setup ground for the circle to move / bounce on.
     //Needs to have a body definition and a body. We use a raw pointer for the b2Body as Box2d does the management itself.
@@ -161,7 +165,7 @@ int main() {
     */
 
     // === pig1 ===
-    b2Vec2 b2_pig1PosIn(400.0f / SCALE, 300.0f / SCALE); // Convert from pixels to meters for Box2D
+    b2Vec2 b2_pig1PosIn(200.0f / SCALE, 300.0f / SCALE); // Convert from pixels to meters for Box2D
 
     b2Vec2 b2_pig1Pos; // position in game world
     b2BodyDef b2_pig1Def; // Body definition (sets initial position and type)
@@ -180,11 +184,12 @@ int main() {
     b2_pig1FixtureDef.friction = 0.3f; // Set friction
     b2_pig1FixtureDef.restitution = 0.5f; // Set bounciness
 
+    b2_pig1Body->GetUserData().pointer = 3;
     b2_pig1Body->CreateFixture(&b2_pig1FixtureDef); // Attach fixture to body
 
 
     // === pig2 ===
-    b2Vec2 b2_pig2PosIn(400.0f / SCALE, 300.0f / SCALE); // Convert from pixels to meters for Box2D
+    b2Vec2 b2_pig2PosIn(300.0f / SCALE, 300.0f / SCALE); // Convert from pixels to meters for Box2D
 
     b2Vec2 b2_pig2Pos; // position in game world
     b2BodyDef b2_pig2Def; // Body definition (sets initial position and type)
@@ -203,7 +208,31 @@ int main() {
     b2_pig2FixtureDef.friction = 0.3f; // Set friction
     b2_pig2FixtureDef.restitution = 0.5f; // Set bounciness
 
+    b2_pig2Body->GetUserData().pointer = 4;
     b2_pig2Body->CreateFixture(&b2_pig2FixtureDef); // Attach fixture to body
+
+    // === pigKing ===
+    b2Vec2 b2_pigKingPosIn(400.0f / SCALE, 300.0f / SCALE); // Convert from pixels to meters for Box2D
+
+    b2Vec2 b2_pigKingPos; // position in game world
+    b2BodyDef b2_pigKingDef; // Body definition (sets initial position and type)
+    b2FixtureDef b2_pigKingFixtureDef; // Fixture definition (attaches shape to body and adds friction, density and bounce)
+    b2Body* b2_pigKingBody; // Body (physical instance in world)
+    b2CircleShape b2_pigKingCircle; // Shape of object (geometry to define collision boundaries)
+    b2_pigKingCircle.m_radius = 30.0f / SCALE; // Set radius of the circle shape for the pig
+
+    b2_pigKingDef.type = b2_dynamicBody; // Set the body type to dynamic for physics simulation
+    b2_pigKingDef.position = b2_pigKingPosIn;
+    b2_pigKingBody = world.CreateBody(&b2_pigKingDef); // Create body in world
+
+    // Set up fixture
+    b2_pigKingFixtureDef.shape = &b2_pig2Circle; // Set the shape of the fixture to the circle
+    b2_pigKingFixtureDef.density = 1.0f; // Set density
+    b2_pigKingFixtureDef.friction = 0.3f; // Set friction
+    b2_pigKingFixtureDef.restitution = 0.5f; // Set bounciness
+
+    b2_pigKingBody->GetUserData().pointer = 5;
+    b2_pigKingBody->CreateFixture(&b2_pigKingFixtureDef); // Attach fixture to body
 
 
     // === red bird ===
@@ -226,6 +255,7 @@ int main() {
     b2_redBirdFixtureDef.friction = 0.3f; // Set friction
     b2_redBirdFixtureDef.restitution = 0.5f; // Set bounciness
 
+    b2_redBirdBody->GetUserData().pointer = 100;
     b2_redBirdBody->CreateFixture(&b2_redBirdFixtureDef); // Attach fixture to body
 
 
@@ -250,6 +280,7 @@ int main() {
     b2_yellowBirdFixtureDef.friction = 0.3f; // Set friction
     b2_yellowBirdFixtureDef.restitution = 0.5f; // Set bounciness
 
+    b2_pigKingBody->GetUserData().pointer = 10;
     b2_yellowBirdBody->CreateFixture(&b2_yellowBirdFixtureDef); // Attach fixture to body
 
 
@@ -274,6 +305,7 @@ int main() {
     b2_blueBirdFixtureDef.friction = 0.3f; // Set friction
     b2_blueBirdFixtureDef.restitution = 0.5f; // Set bounciness
 
+    b2_pigKingBody->GetUserData().pointer = 11;
     b2_blueBirdBody->CreateFixture(&b2_blueBirdFixtureDef); // Attach fixture to body
 
 
@@ -412,6 +444,7 @@ int main() {
         sf_plankVisual.setPosition(b2_plankBody->GetPosition().x * SCALE, b2_plankBody->GetPosition().y * SCALE);
         sf_plankVisual.setRotation(b2_plankBody->GetAngle() * (180.0f / PI));
 
+      
         //Render all of the content at each frame. Remember you need to clear the screen each iteration or artefacts remain.
         window.clear(sf::Color(135, 206, 235)); // Sky Blue
 
@@ -445,13 +478,13 @@ int main() {
 
 
         // Pigs
-        b2Body* a_pigBodies[2] = {b2_pig1Body, b2_pig2Body};
+        b2Body* a_pigBodies[3] = {b2_pig1Body, b2_pig2Body, b2_pigKingBody};
         int i_pigIndex = 0;
         auto pigRange = mm_dynamicObjects.equal_range("Pig"); // Return 2 iterators -> first is first pig, second is one past last pig. Range of these iterators are all pigs
 
         // Iterator starts at first pig
         // Moves along until it reaches the second bound of the range (non-pig)
-        for (auto it = pigRange.first; it != pigRange.second && i_pigIndex < 2; it++)
+        for (auto it = pigRange.first; it != pigRange.second && i_pigIndex < 3; it++)
         {
             // Get the DynamicObject* pointer
             // If the DynamicObject* is a Pig*, make it into Pig*
@@ -497,6 +530,18 @@ int main() {
             obj.second->render(window); // obj.second to render the object not the key
         }
 
+        std::set<uintptr_t> s_collision = c.getPointer();
+
+        for (auto collisionID = s_collision.begin(); collisionID != s_collision.end();)
+        {
+            //std::cout << "Destoryed";
+            if (s_collision.find(b2_pig1Body->GetUserData().pointer) != s_collision.end())
+            {
+                // world.DestroyBody(b2_pig1Body);
+                // s_collision.erase(collisionID);
+
+            }
+        }
         window.display();
     }
 
