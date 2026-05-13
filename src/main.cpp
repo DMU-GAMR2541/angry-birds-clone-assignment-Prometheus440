@@ -20,23 +20,26 @@ int main() {
     /*
     *       VARIABLES
     */
+
+
     // === Input variables ===
 	bool b_isDragging = false; // For mouse dragging
     bool b_birdFired = false; // To prevent sprites being deleted before any launch
     b2Vec2 b2_dragStartPos(0.0f, 0.0f); // To set birds start vector for relative launches
 
-    // === Pigs + birds containers ===
-    std::multimap<std::string, std::unique_ptr<DynamicObject>> mm_dynamicObjects; //multimap, key is a string which looks for the type, the value is the unique pointer
+
+    // === Arrays ===
     std::string a_birdSpritePaths[3] = { "../assets/Ang_Birds/red.png", "../assets/Ang_Birds/yellow.png", "../assets/Ang_Birds/blue.png"};
     std::string a_pigSpritePaths[3] = { "../assets/Ang_Birds/pig.png", "../assets/Ang_Birds/pig_helmet.png", "../assets/Ang_Birds/pigKing.png"};
 
-    // Arrays for looping
     float a_birdXPos[3] = {250.0f, 300.0f, 500.0f};
     float a_birdScales[3] = {0.025f, 0.075f, 0.065f};
     float a_pigXPos[3] = { 400.0f, 600.0f, 800.0f};
     float a_pigScales[3] = { 0.04f, 0.225f, 0.6f};
-    float a_pigHealth[3] = { 1, 2, 3 };
 
+
+    // === Multimap ===
+    std::multimap<std::string, std::unique_ptr<DynamicObject>> mm_dynamicObjects; //multimap, key is a string which looks for the type, the value is the unique pointer
     // Bird loop
     for (int i = 0; i < 3; i++)
     {
@@ -48,11 +51,13 @@ int main() {
         mm_dynamicObjects.insert({"Pig", std::unique_ptr<DynamicObject>(new Pig(1, a_pigSpritePaths[i], a_pigXPos[i], 300.0f, a_pigScales[i]))});
     }
 
+
     // === catapult ===
     std::unique_ptr<Catapult> catapult(new Catapult("../assets/Ang_Birds/Catapult.png", 100.0f, 480.0f, 0.4f));
 
     // Upcasting
     listDynamics(catapult.get(), "Catapult");
+
 
     //  === Non-interactables ===
     std::vector<std::unique_ptr<NonInteractable>> v_scenery;
@@ -164,149 +169,51 @@ int main() {
     *       BOX2D SET UP    
     */
 
-    // === pig1 ===
-    b2Vec2 b2_pig1PosIn(200.0f / SCALE, 300.0f / SCALE); // Convert from pixels to meters for Box2D
+    // === Birds ===
+    float a_birdPhysX[3] = { 250.0f/SCALE, 300.0f / SCALE, 500.0f / SCALE };
+    float a_birdPhysY[3] = { 560.0f/SCALE, 560.0f / SCALE, 560.0f / SCALE };
+    uintptr_t a_birdID[3] = { 100, 100, 100 };
 
-    b2Vec2 b2_pig1Pos; // position in game world
-    b2BodyDef b2_pig1Def; // Body definition (sets initial position and type)
-    b2FixtureDef b2_pig1FixtureDef; // Fixture definition (attaches shape to body and adds friction, density and bounce)
-    b2Body* b2_pig1Body; // Body (physical instance in world)
-    b2CircleShape b2_pig1Circle; // Shape of object (geometry to define collision boundaries)
-	b2_pig1Circle.m_radius = 30.0f / SCALE; // Set radius of the circle shape for the pig
+    auto birdSetupRange = mm_dynamicObjects.equal_range("Bird");
+    int b_idx = 0;
 
-    b2_pig1Def.type = b2_dynamicBody; // Set the body type to dynamic for physics simulation
-    b2_pig1Def.position = b2_pig1PosIn;
-    b2_pig1Body = world.CreateBody(&b2_pig1Def); // Create body in world
-
-    // Set up fixture
-    b2_pig1FixtureDef.shape = &b2_pig1Circle; // Set the shape of the fixture to the circle
-    b2_pig1FixtureDef.density = 1.0f; // Set density
-    b2_pig1FixtureDef.friction = 0.3f; // Set friction
-    b2_pig1FixtureDef.restitution = 0.5f; // Set bounciness
-
-    b2_pig1Body->GetUserData().pointer = 3;
-    b2_pig1Body->CreateFixture(&b2_pig1FixtureDef); // Attach fixture to body
+    // Create all bird bodies from the range of birds in the multimap
+    for (auto birdIt = birdSetupRange.first; birdIt != birdSetupRange.second; birdIt++)
+    {
+        birdIt->second->box2DSetup(world, a_birdPhysX[b_idx], a_birdPhysY[b_idx], 30.0f/SCALE, 1.0f, 0.3f, 0.5f, a_birdID[b_idx]);
+        b_idx++;
+    }
 
 
-    // === pig2 ===
-    b2Vec2 b2_pig2PosIn(300.0f / SCALE, 300.0f / SCALE); // Convert from pixels to meters for Box2D
+    // === Pigs ===
+    float a_pigPhysX[3] = { 400.0f/SCALE, 600.0f / SCALE, 700.0f / SCALE };
+    float a_pigPhysY[3] = { 300.0f/SCALE, 300.0f / SCALE, 300.0f / SCALE };
+    uintptr_t a_pigID[3] = { 3, 4, 5 };
 
-    b2Vec2 b2_pig2Pos; // position in game world
-    b2BodyDef b2_pig2Def; // Body definition (sets initial position and type)
-    b2FixtureDef b2_pig2FixtureDef; // Fixture definition (attaches shape to body and adds friction, density and bounce)
-    b2Body* b2_pig2Body; // Body (physical instance in world)
-    b2CircleShape b2_pig2Circle; // Shape of object (geometry to define collision boundaries)
-    b2_pig2Circle.m_radius = 30.0f / SCALE; // Set radius of the circle shape for the pig
+    auto pigIt = mm_dynamicObjects.equal_range("Pig");
+    int p_idx = 0;
 
-    b2_pig2Def.type = b2_dynamicBody; // Set the body type to dynamic for physics simulation
-    b2_pig2Def.position = b2_pig2PosIn;
-    b2_pig2Body = world.CreateBody(&b2_pig2Def); // Create body in world
-
-    // Set up fixture
-    b2_pig2FixtureDef.shape = &b2_pig2Circle; // Set the shape of the fixture to the circle
-    b2_pig2FixtureDef.density = 1.0f; // Set density
-    b2_pig2FixtureDef.friction = 0.3f; // Set friction
-    b2_pig2FixtureDef.restitution = 0.5f; // Set bounciness
-
-    b2_pig2Body->GetUserData().pointer = 4;
-    b2_pig2Body->CreateFixture(&b2_pig2FixtureDef); // Attach fixture to body
-
-    // === pigKing ===
-    b2Vec2 b2_pigKingPosIn(400.0f / SCALE, 300.0f / SCALE); // Convert from pixels to meters for Box2D
-
-    b2Vec2 b2_pigKingPos; // position in game world
-    b2BodyDef b2_pigKingDef; // Body definition (sets initial position and type)
-    b2FixtureDef b2_pigKingFixtureDef; // Fixture definition (attaches shape to body and adds friction, density and bounce)
-    b2Body* b2_pigKingBody; // Body (physical instance in world)
-    b2CircleShape b2_pigKingCircle; // Shape of object (geometry to define collision boundaries)
-    b2_pigKingCircle.m_radius = 30.0f / SCALE; // Set radius of the circle shape for the pig
-
-    b2_pigKingDef.type = b2_dynamicBody; // Set the body type to dynamic for physics simulation
-    b2_pigKingDef.position = b2_pigKingPosIn;
-    b2_pigKingBody = world.CreateBody(&b2_pigKingDef); // Create body in world
-
-    // Set up fixture
-    b2_pigKingFixtureDef.shape = &b2_pig2Circle; // Set the shape of the fixture to the circle
-    b2_pigKingFixtureDef.density = 1.0f; // Set density
-    b2_pigKingFixtureDef.friction = 0.3f; // Set friction
-    b2_pigKingFixtureDef.restitution = 0.5f; // Set bounciness
-
-    b2_pigKingBody->GetUserData().pointer = 5;
-    b2_pigKingBody->CreateFixture(&b2_pigKingFixtureDef); // Attach fixture to body
+    // Create all pig bodies from the range of pigs in the multimap
+    for (auto pigSetupRange = pigIt.first; pigSetupRange != pigIt.second; pigSetupRange++)
+    {
+        pigSetupRange->second->box2DSetup(world, a_pigPhysX[p_idx], a_pigPhysY[p_idx], 30.0f/SCALE, 1.0f, 0.3f, 0.5f, a_pigID[p_idx]);
+        p_idx++;
+    }
 
 
-    // === red bird ===
-    b2Vec2 b2_redBirdPosIn(250.0f / SCALE, 560.0f / SCALE); // Convert from pixels to meters for Box2D
+    // === Mouse input ===
+    b2Body* a_birdBodies[3] = {nullptr, nullptr, nullptr}; // Array to move through to get bird
 
-    b2Vec2 b2_redBirdPos; // position in game world
-    b2BodyDef b2_redBirdDef; // Body definition (sets initial position and type)
-    b2FixtureDef b2_redBirdFixtureDef; // Fixture definition (attaches shape to body and adds friction, density and bounce)
-    b2Body* b2_redBirdBody; // Body (physical instance in world)
-    b2CircleShape b2_redBirdCircle; // Shape of object (geometry to define collision boundaries)
-    b2_redBirdCircle.m_radius = 30.0f / SCALE; // Set radius of the circle shape for the pig
+    auto birdBodyRange = mm_dynamicObjects.equal_range("Bird");
+    int bodyIDx = 0;
 
-    b2_redBirdDef.type = b2_dynamicBody; // Set the body type to dynamic for physics simulation
-    b2_redBirdDef.position = b2_redBirdPosIn;
-    b2_redBirdBody = world.CreateBody(&b2_redBirdDef); // Create body in world
+    for (auto birdBodyIt = birdBodyRange.first; birdBodyIt != birdBodyRange.second; birdBodyIt++)
+    {
+        a_birdBodies[bodyIDx] = birdBodyIt->second->getBody();
+        bodyIDx++;
+    }
 
-    // Set up fixture
-    b2_redBirdFixtureDef.shape = &b2_redBirdCircle; // Set the shape of the fixture to the circle
-    b2_redBirdFixtureDef.density = 1.0f; // Set density
-    b2_redBirdFixtureDef.friction = 0.3f; // Set friction
-    b2_redBirdFixtureDef.restitution = 0.5f; // Set bounciness
-
-    b2_redBirdBody->GetUserData().pointer = 100;
-    b2_redBirdBody->CreateFixture(&b2_redBirdFixtureDef); // Attach fixture to body
-
-
-    // === yellow bird ===
-    b2Vec2 b2_yellowBirdPosIn(300.0f / SCALE, 560.0f / SCALE); // Convert from pixels to meters for Box2D
-	b2Vec2 b2_yellowStartPosition = b2_yellowBirdPosIn; // Store the starting position for impulse calculation when released
-
-    b2Vec2 b2_yellowBirdPos; // position in game world
-    b2BodyDef b2_yellowBirdDef; // Body definition (sets initial position and type)
-    b2FixtureDef b2_yellowBirdFixtureDef; // Fixture definition (attaches shape to body and adds friction, density and bounce)
-    b2Body* b2_yellowBirdBody; // Body (physical instance in world)
-    b2CircleShape b2_yellowBirdCircle; // Shape of object (geometry to define collision boundaries)
-    b2_yellowBirdCircle.m_radius = 30.0f / SCALE; // Set radius of the circle shape for the pig
-
-    b2_yellowBirdDef.type = b2_dynamicBody; // Set the body type to dynamic for physics simulation
-    b2_yellowBirdDef.position = b2_yellowBirdPosIn;
-    b2_yellowBirdBody = world.CreateBody(&b2_yellowBirdDef); // Create body in world
-
-    // Set up fixture
-    b2_yellowBirdFixtureDef.shape = &b2_yellowBirdCircle; // Set the shape of the fixture to the circle
-    b2_yellowBirdFixtureDef.density = 1.0f; // Set density
-    b2_yellowBirdFixtureDef.friction = 0.3f; // Set friction
-    b2_yellowBirdFixtureDef.restitution = 0.5f; // Set bounciness
-
-    b2_pigKingBody->GetUserData().pointer = 10;
-    b2_yellowBirdBody->CreateFixture(&b2_yellowBirdFixtureDef); // Attach fixture to body
-
-
-    // === blue bird ===
-    b2Vec2 b2_blueBirdPosIn(500.0f / SCALE, 560.0f / SCALE); // Convert from pixels to meters for Box2D
-    b2Vec2 b2_blueStartPosition = b2_blueBirdPosIn; // Store the starting position for impulse calculation when released
-
-    b2Vec2 b2_blueBirdPos; // position in game world
-    b2BodyDef b2_blueBirdDef; // Body definition (sets initial position and type)
-    b2FixtureDef b2_blueBirdFixtureDef; // Fixture definition (attaches shape to body and adds friction, density and bounce)
-    b2Body* b2_blueBirdBody; // Body (physical instance in world)
-    b2CircleShape b2_blueBirdCircle; // Shape of object (geometry to define collision boundaries)
-    b2_blueBirdCircle.m_radius = 30.0f / SCALE; // Set radius of the circle shape for the pig
-
-    b2_blueBirdDef.type = b2_dynamicBody; // Set the body type to dynamic for physics simulation
-    b2_blueBirdDef.position = b2_blueBirdPosIn;
-    b2_blueBirdBody = world.CreateBody(&b2_blueBirdDef); // Create body in world
-
-    // Set up fixture
-    b2_blueBirdFixtureDef.shape = &b2_blueBirdCircle; // Set the shape of the fixture to the circle
-    b2_blueBirdFixtureDef.density = 1.0f; // Set density
-    b2_blueBirdFixtureDef.friction = 0.3f; // Set friction
-    b2_blueBirdFixtureDef.restitution = 0.5f; // Set bounciness
-
-    b2_pigKingBody->GetUserData().pointer = 11;
-    b2_blueBirdBody->CreateFixture(&b2_blueBirdFixtureDef); // Attach fixture to body
+    int i_currentBird = 0; // Start at element 0 in array
 
 
 
@@ -314,9 +221,6 @@ int main() {
     /*
     *       EVENTS
     */
-    // For mouse input
-    b2Body* a_birdBodies[3] = {b2_redBirdBody, b2_yellowBirdBody, b2_blueBirdBody}; // Array to move through to get bird
-    int i_currentBird = 0; // Start at element 0 in array
 
     while (window.isOpen()) {
         sf::Event event;
@@ -336,26 +240,6 @@ int main() {
                     b2_ballBody->ApplyLinearImpulse(b2Vec2(5.0f, -5.0f), b2_ballBody->GetWorldCenter(), true);
 
                     std::cout << "Firing!!!!" << std::endl;
-                }
-            }
-
-            // Added for impulse example when E is pressed
-            if (event.type == sf::Event::KeyPressed)
-            {
-                if (event.key.code == sf::Keyboard::E)
-                {
-                    // Calculate launch vector (target pos - origin pos)
-                    b2Vec2 b2_originPos = b2_redBirdBody->GetPosition();
-                    b2Vec2 b2_targetPos = b2_pig1Body->GetPosition(); // Target is pig1
-
-                    b2Vec2 b2_launchVec; // Making launch direction
-                    b2_launchVec.x = b2_targetPos.x - b2_originPos.x;
-                    b2_launchVec.y = b2_targetPos.y - b2_originPos.y;
-
-                    // Impulse
-                    float f_speedMultiplier = 3.0f;
-                    b2Vec2 b2_impulseMagnitude(b2_launchVec.x * f_speedMultiplier, b2_launchVec.y * f_speedMultiplier);
-                    b2_redBirdBody->ApplyLinearImpulseToCenter(b2_impulseMagnitude, true);
                 }
             }
 
@@ -478,7 +362,6 @@ int main() {
 
 
         // Pigs
-        b2Body* a_pigBodies[3] = {b2_pig1Body, b2_pig2Body, b2_pigKingBody};
         int i_pigIndex = 0;
         auto pigRange = mm_dynamicObjects.equal_range("Pig"); // Return 2 iterators -> first is first pig, second is one past last pig. Range of these iterators are all pigs
 
@@ -496,7 +379,7 @@ int main() {
 
             if (pig != nullptr) // if it is Pig*
             {
-                pig->setPosition(a_pigBodies[i_pigIndex]->GetPosition().x * SCALE, a_pigBodies[i_pigIndex]->GetPosition().y * SCALE); // Set position
+                pig->setPosition(it->second->getBody()->GetPosition().x * SCALE, it->second->getBody()->GetPosition().y * SCALE); // Set position
                 i_pigIndex++;
             }
 
@@ -530,18 +413,45 @@ int main() {
             obj.second->render(window); // obj.second to render the object not the key
         }
 
-        std::set<uintptr_t> s_collision = c.getPointer();
 
-        for (auto collisionID = s_collision.begin(); collisionID != s_collision.end();)
+
+
+        /*
+        *       COLLISIONS
+        */
+        std::set<uintptr_t> s_collision = c.getPointer(); // Get the collision IDs from CollisionListener
+
+        b2Body* a_pigBodies[3] = { nullptr, nullptr, nullptr }; // Remake a_pigBodies array
+        auto pigCollisionRange = mm_dynamicObjects.equal_range("Pig"); // Get range of pigs from multimap
+        int i_pColIdx = 0;
+
+        // For every pig
+        for (auto it = pigCollisionRange.first; it != pigCollisionRange.second; it++)
         {
-            //std::cout << "Destoryed";
-            if (s_collision.find(b2_pig1Body->GetUserData().pointer) != s_collision.end())
-            {
-                // world.DestroyBody(b2_pig1Body);
-                // s_collision.erase(collisionID);
+            // Get the body from the unique pointer and store it in the a_pigBodies array
+            a_pigBodies[i_pColIdx] = it->second->getBody();
+            ++i_pColIdx;
+        }
 
+        for (int i = 0; i < 3; i++)
+        {
+            // s_collision.find to check pig ID was hit 
+            if (a_pigBodies[i] != nullptr && s_collision.find(a_pigBodies[i]->GetUserData().pointer) != s_collision.end())
+            {
+                world.DestroyBody(a_pigBodies[i]); // Destroy that pigs body
+
+                auto pigIt = mm_dynamicObjects.find("Pig");
+
+                // Remove that sprite from multipmap
+                if (pigIt != mm_dynamicObjects.end())
+                {
+                    mm_dynamicObjects.erase(pigIt);
+                }
             }
         }
+
+        c.clearPointers();
+
         window.display();
     }
 

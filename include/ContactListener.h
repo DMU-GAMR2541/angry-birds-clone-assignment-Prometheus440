@@ -15,19 +15,29 @@ class ContactListener : public b2ContactListener {
         ContactListener() = default;
 
     // Called when two fixtures begin to touch
-    void BeginContact(b2Contact* contact) override {
-        // Get the two fixtures involved
+    void BeginContact(b2Contact* contact) override
+    {
         b2Fixture* fixtureA = contact->GetFixtureA();
         b2Fixture* fixtureB = contact->GetFixtureB();
-        // std::cout << fixtureB->GetBody()->GetUserData().pointer << " and " << fixtureA->GetBody()->GetUserData().pointer << " hit " << std::endl;
 
-        if (fixtureB->GetBody()->GetUserData().pointer == 100 && fixtureA->GetBody()->GetUserData().pointer > 2) {
-            s_ptr.insert(fixtureB->GetBody()->GetUserData().pointer);
-            std::cout << fixtureB->GetBody()->GetUserData().pointer << " and " << fixtureA->GetBody()->GetUserData().pointer << " hit " << std::endl;
+        uintptr_t idA = fixtureA->GetBody()->GetUserData().pointer;
+        uintptr_t idB = fixtureB->GetBody()->GetUserData().pointer;
+
+        // Bird A hit Pig B — store pig's ID
+        if (idA == 100 && idB > 0 && idB < 10)
+        {
+            s_ptr.insert(idB); // pig ID
+            std::cout << "Bird hit Pig " << idB << std::endl;
         }
 
-        
+        // Bird B hit Pig A — store pig's ID
+        if (idB == 100 && idA > 0 && idA < 10)
+        {
+            s_ptr.insert(idA); // pig ID
+            std::cout << "Bird hit Pig " << idA << std::endl;
+        }
     }
+
     // Called when two fixtures cease to touch
     void EndContact(b2Contact* contact) override {
         std::cout << "Collision Ended" << std::endl;
@@ -35,6 +45,11 @@ class ContactListener : public b2ContactListener {
 
     std::set<uintptr_t> getPointer() {
         return s_ptr;
+    }
+
+    void clearPointers()
+    {
+        s_ptr.clear();
     }
 
 };
