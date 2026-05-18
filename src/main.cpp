@@ -27,6 +27,7 @@ int main() {
     bool b_birdFired = false; // To prevent sprites being deleted before any launch
     b2Vec2 b2_dragStartPos(100.0f, 300.0f); // To set birds start vector for launches around the catapult
 
+    bool b_showScenery = false; // Default hide scenery
 
     // === Arrays ===
     std::string a_birdSpritePaths[3] = { "../assets/Ang_Birds/red.png", "../assets/Ang_Birds/yellow.png", "../assets/Ang_Birds/blue.png"};
@@ -159,6 +160,21 @@ int main() {
     }
 
 
+    // === UI ===
+    sf::Font font;
+
+    if (!font.loadFromFile("../assets/fonts/angry-birds.ttf"))
+    {
+        std::cout << "Could not load font" << std::endl;
+    }
+
+    sf::Text pigCountText;
+    pigCountText.setFont(font);
+    pigCountText.setCharacterSize(30);
+    pigCountText.setFillColor(sf::Color::White);
+    pigCountText.setPosition(10.0f, 10.0f);
+
+
 
 
     /*
@@ -232,7 +248,7 @@ int main() {
 
                 if (b_birdFired && mm_dynamicObjects.count("Bird") > 0)
                 {
-                    std::cout << "Entered loop" << std::endl;
+                    // std::cout << "Entered loop" << std::endl;
 
                     // Destory box2D of the bird first
                     world.DestroyBody(a_birdBodies[i_currentBird]);
@@ -287,6 +303,29 @@ int main() {
 
                 b_birdFired = true;
             }
+
+            if (event.type == sf::Event::KeyPressed)
+            {
+                if (event.key.code == sf::Keyboard::P)
+                {
+                    auto pigIt = mm_dynamicObjects.find("Pig");
+
+                    // Remove that sprite from multipmap
+                    if (pigIt != mm_dynamicObjects.end())
+                    {
+                        world.DestroyBody(pigIt->second->getBody()); // Destroy that pigs body
+                        mm_dynamicObjects.erase(pigIt); //Remove pig from multimap
+                    }
+                }
+            }
+
+            if (event.type == sf::Event::KeyPressed)
+            {
+                if (event.key.code == sf::Keyboard::R)
+                {
+                    b_showScenery = !b_showScenery; // Toggle on or off
+                }
+            }
         }
 
 
@@ -317,6 +356,25 @@ int main() {
 
 
         // === Added objects ===
+        // Destruction
+        for (b2Body* body : c.s_destructionQueue)
+        {
+            uintptr_t id = body->GetUserData().pointer;
+            world.DestroyBody(body);
+
+            auto pigIt = mm_dynamicObjects.find("Pig");
+
+            if (pigIt != mm_dynamicObjects.end())
+            {
+                mm_dynamicObjects.erase(pigIt);
+            }
+
+            std::cout << "Pig " << id << " destroyed from queue" << std::endl << std::endl;
+        }
+
+        c.s_destructionQueue.clear();
+
+   
         // Birds
         auto birdRange = mm_dynamicObjects.equal_range("Bird"); // Return 2 iterators -> first is first bird, second is one past last bird. Range of these iterators are all birds
         int i = i_currentBird; // Start at current bird
@@ -376,9 +434,12 @@ int main() {
 
         // === Scenery ===
         // Draw first so that its in the background
-        for (auto& scenery : v_scenery) // Loop through all the scenery in the vector, not just the first one
+        if (b_showScenery)
         {
-            scenery->render(window);
+            for (auto& scenery : v_scenery) // Loop through all the scenery in the vector, not just the first one
+            {
+                scenery->render(window);
+            }
         }
 
         // === Given objects ===
@@ -396,6 +457,9 @@ int main() {
         {
             obj.second->render(window); // obj.second to render the object not the key
         }
+
+        pigCountText.setString("Pigs remaining: " + std::to_string(mm_dynamicObjects.count("Pig")));
+        window.draw(pigCountText);
 
 
 
@@ -422,6 +486,9 @@ int main() {
             // s_collision.find to check pig ID was hit 
             if (a_pigBodies[i] != nullptr && s_collision.find(a_pigBodies[i]->GetUserData().pointer) != s_collision.end())
             {
+                auto contacts = c.mm_contactPairs.equal_range(a_pigBodies[i]->GetFixtureList());
+                std::cout << "Pig " << a_pigBodies[i]->GetUserData().pointer << " was collided with" << std::endl;
+                
                 world.DestroyBody(a_pigBodies[i]); // Destroy that pigs body
 
                 auto pigIt = mm_dynamicObjects.find("Pig");
