@@ -22,7 +22,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{85D56E48-C04B-389A-94C7-FB6C2CD7DF52}</ProjectGuid>
+    <ProjectGuid>{7F45B20A-7514-3ABD-87D1-FBD178C096F9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
@@ -59,60 +59,55 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\lib\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\lib\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">gmock_main.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">gmock_main</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\lib\Release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\lib\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">gmock_main.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">gmock_main</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\lib\MinSizeRel\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\lib\MinSizeRel\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">gmock_main.dir\MinSizeRel\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">gmock_main</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\lib\RelWithDebInfo\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\lib\RelWithDebInfo\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">gmock_main.dir\RelWithDebInfo\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">gmock_main</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) -J -utf-8</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <BufferSecurityCheck>true</BufferSecurityCheck>
-      <CallingConvention></CallingConvention>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4251;4275;4702</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <FloatingPointModel></FloatingPointModel>
-      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MinimalRebuild></MinimalRebuild>
       <Optimization>Disabled</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <SupportJustMyCode></SupportJustMyCode>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_UNICODE;UNICODE;_WIN32;STRICT;WIN32_LEAN_AND_MEAN;GTEST_HAS_PTHREAD=0;_HAS_EXCEPTIONS=1;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <ProgramDataBaseFileName>D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\lib\Debug\gmock_mainpdb_debug_postfix-NOTFOUND.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\lib\Debug\gmock_mainpdb_debug_postfix-NOTFOUND.pdb</ProgramDataBaseFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_UNICODE;UNICODE;_WIN32;STRICT;WIN32_LEAN_AND_MEAN;GTEST_HAS_PTHREAD=0;_HAS_EXCEPTIONS=1;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -125,26 +120,21 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) -J -utf-8</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <BufferSecurityCheck>true</BufferSecurityCheck>
-      <CallingConvention></CallingConvention>
       <DisableSpecificWarnings>4251;4275;4702</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <FloatingPointModel></FloatingPointModel>
-      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MinimalRebuild></MinimalRebuild>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <SupportJustMyCode></SupportJustMyCode>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
@@ -152,15 +142,15 @@
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <ProgramDataBaseFileName>D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\lib\Release\gmock_main.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\lib\Release\gmock_main.pdb</ProgramDataBaseFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_UNICODE;UNICODE;_WIN32;STRICT;WIN32_LEAN_AND_MEAN;GTEST_HAS_PTHREAD=0;_HAS_EXCEPTIONS=1;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -173,26 +163,21 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) -J -utf-8</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <BufferSecurityCheck>true</BufferSecurityCheck>
-      <CallingConvention></CallingConvention>
       <DisableSpecificWarnings>4251;4275;4702</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <FloatingPointModel></FloatingPointModel>
-      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MinimalRebuild></MinimalRebuild>
       <Optimization>MinSpace</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <SupportJustMyCode></SupportJustMyCode>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
@@ -200,15 +185,15 @@
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <ProgramDataBaseFileName>D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\lib\MinSizeRel\gmock_main.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\lib\MinSizeRel\gmock_main.pdb</ProgramDataBaseFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_UNICODE;UNICODE;_WIN32;STRICT;WIN32_LEAN_AND_MEAN;GTEST_HAS_PTHREAD=0;_HAS_EXCEPTIONS=1;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -221,41 +206,36 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) -J -utf-8</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <BufferSecurityCheck>true</BufferSecurityCheck>
-      <CallingConvention></CallingConvention>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4251;4275;4702</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <FloatingPointModel></FloatingPointModel>
-      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MinimalRebuild></MinimalRebuild>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <SupportJustMyCode></SupportJustMyCode>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_UNICODE;UNICODE;_WIN32;STRICT;WIN32_LEAN_AND_MEAN;GTEST_HAS_PTHREAD=0;_HAS_EXCEPTIONS=1;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <ProgramDataBaseFileName>D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\lib\RelWithDebInfo\gmock_main.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\lib\RelWithDebInfo\gmock_main.pdb</ProgramDataBaseFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_UNICODE;UNICODE;_WIN32;STRICT;WIN32_LEAN_AND_MEAN;GTEST_HAS_PTHREAD=0;_HAS_EXCEPTIONS=1;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\include;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -267,11 +247,11 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\CMakeLists.txt">
+    <CustomBuild Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-src/googlemock/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-src/googlemock/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SD:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440" "-BD:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build" --check-stamp-file "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-build/googlemock/CMakeFiles/generate.stamp"
+"C:\Program Files\CMake\bin\cmake.exe" "-SH:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440" "-BH:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build" --check-stamp-file "H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-build/googlemock/CMakeFiles/generate.stamp"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -279,12 +259,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.3\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindThreads.cmake;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\cmake\gmock.pc.in;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\cmake\gmock_main.pc.in;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-build\googlemock\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindThreads.cmake;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\cmake\gmock.pc.in;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\cmake\gmock_main.pc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-build\googlemock\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-src/googlemock/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-src/googlemock/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SD:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440" "-BD:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build" --check-stamp-file "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-build/googlemock/CMakeFiles/generate.stamp"
+"C:\Program Files\CMake\bin\cmake.exe" "-SH:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440" "-BH:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build" --check-stamp-file "H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-build/googlemock/CMakeFiles/generate.stamp"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -292,12 +272,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-4.3\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindThreads.cmake;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\cmake\gmock.pc.in;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\cmake\gmock_main.pc.in;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-build\googlemock\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindThreads.cmake;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\cmake\gmock.pc.in;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\cmake\gmock_main.pc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-build\googlemock\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-src/googlemock/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-src/googlemock/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SD:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440" "-BD:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build" --check-stamp-file "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-build/googlemock/CMakeFiles/generate.stamp"
+"C:\Program Files\CMake\bin\cmake.exe" "-SH:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440" "-BH:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build" --check-stamp-file "H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-build/googlemock/CMakeFiles/generate.stamp"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -305,12 +285,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-4.3\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindThreads.cmake;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\cmake\gmock.pc.in;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\cmake\gmock_main.pc.in;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-build\googlemock\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindThreads.cmake;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\cmake\gmock.pc.in;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\cmake\gmock_main.pc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-build\googlemock\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-src/googlemock/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-src/googlemock/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SD:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440" "-BD:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build" --check-stamp-file "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-build/googlemock/CMakeFiles/generate.stamp"
+"C:\Program Files\CMake\bin\cmake.exe" "-SH:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440" "-BH:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build" --check-stamp-file "H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-build/googlemock/CMakeFiles/generate.stamp"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -318,20 +298,19 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-4.3\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindThreads.cmake;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\cmake\gmock.pc.in;D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\cmake\gmock_main.pc.in;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-build\googlemock\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindThreads.cmake;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\cmake\gmock.pc.in;H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\cmake\gmock_main.pc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-build\googlemock\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\src\gtest-all.cc" />
-    <ClCompile Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\src\gmock-all.cc" />
-    <ClCompile Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\src\gmock_main.cc" />
+    <ClCompile Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googletest\src\gtest-all.cc" />
+    <ClCompile Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\src\gmock-all.cc" />
+    <ClCompile Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\_deps\googletest-src\googlemock\src\gmock_main.cc" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\Build\ZERO_CHECK.vcxproj">
-      <Project>{5F2DCFBC-6B65-3BE1-9D7C-4173B326F142}</Project>
+    <ProjectReference Include="H:\Documents\Module 8 - Production Level C++\angry-birds-clone-assignment-Prometheus440\Build\ZERO_CHECK.vcxproj">
+      <Project>{57B84A8B-0D2E-3B26-8434-49F2C9B0913D}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

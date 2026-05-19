@@ -8,6 +8,7 @@
 #include "Catapult.h"
 #include "NonInteractable.h"
 #include "ContactListener.h"
+#include "PigBuilder.h"
 
 // Upcasting function
 void listDynamics(DynamicObject* obj, std::string name)
@@ -38,6 +39,9 @@ int main() {
     float a_pigXPos[3] = { 400.0f, 400.0f, 400.0f};
     float a_pigScales[3] = { 0.04f, 0.225f, 0.6f};
 
+    //setup world.
+    b2Vec2 b2_gravity(0.0f, 9.8f); // Earth-like gravity
+    b2World world(b2_gravity);
 
     // === Multimap ===
     std::multimap<std::string, std::unique_ptr<DynamicObject>> mm_dynamicObjects; //multimap, key is a string which looks for the type, the value is the unique pointer
@@ -49,7 +53,14 @@ int main() {
     // Pig loop
     for (int i = 0; i < 3; i++)
     {
-        mm_dynamicObjects.insert({"Pig", std::unique_ptr<DynamicObject>(new Pig(1, a_pigSpritePaths[i], a_pigXPos[i], 300.0f, a_pigScales[i]))});
+        Pig* pig = PigBuilder()
+            .setSprite(a_pigSpritePaths[i], a_pigScales[i])
+            .setPosition(a_pigXPos[i], 300.0f)
+            .setHealth(1)
+            .setWorld(&world)
+            .build();
+
+        mm_dynamicObjects.insert({"Pig", std::unique_ptr<DynamicObject>(pig)});
     }
 
 
@@ -99,9 +110,6 @@ int main() {
     //Can set a definition for PI.
     const float PI = 3.1415927;
 
-    //setup world.
-    b2Vec2 b2_gravity(0.0f, 9.8f); // Earth-like gravity
-    b2World world(b2_gravity);
     world.SetContactListener(&c);
 
 

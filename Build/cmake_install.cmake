@@ -1,4 +1,4 @@
-# Install script for directory: D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440
+# Install script for directory: H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,25 +34,19 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-build/cmake_install.cmake")
+  include("H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/googletest-build/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/box2d-build/cmake_install.cmake")
+  include("H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/box2d-build/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-build/cmake_install.cmake")
+  include("H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/_deps/sfml-build/cmake_install.cmake")
 endif()
 
-string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
-       "${CMAKE_INSTALL_MANIFEST_FILES}")
-if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/install_local_manifest.txt"
-     "${CMAKE_INSTALL_MANIFEST_CONTENT}")
-endif()
 if(CMAKE_INSTALL_COMPONENT)
   if(CMAKE_INSTALL_COMPONENT MATCHES "^[a-zA-Z0-9_.+-]+$")
     set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INSTALL_COMPONENT}.txt")
@@ -66,6 +60,8 @@ else()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "D:/8 - Production Level C++/Labs/angry-birds-clone-assignment-Prometheus440/Build/${CMAKE_INSTALL_MANIFEST}"
+  string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
+       "${CMAKE_INSTALL_MANIFEST_FILES}")
+  file(WRITE "H:/Documents/Module 8 - Production Level C++/angry-birds-clone-assignment-Prometheus440/Build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
