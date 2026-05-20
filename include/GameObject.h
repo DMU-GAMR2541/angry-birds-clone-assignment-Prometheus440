@@ -3,6 +3,9 @@
 
 class GameObject {
 	public:
+		sf::Sprite sp_rendered;
+		std::string str_path;
+
 	// Default constructor and destructor
 	GameObject() = default;
 	virtual ~GameObject() = default; // Virtual desctructor because polymorphism is being used
@@ -10,4 +13,14 @@ class GameObject {
 	// Pure virtual functions to be implemented by derived classes
 	virtual void update() = 0;
 	virtual void render(sf::RenderWindow& sf_window) = 0;
+
+	virtual sf::Sprite getSprite()
+	{
+		return sp_rendered;
+	}
+
+	virtual std::string getSpritePath()
+	{
+		return str_path;
+	}
 };

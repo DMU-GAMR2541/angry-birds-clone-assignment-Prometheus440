@@ -89,12 +89,11 @@ int main() {
     std::vector<std::unique_ptr<NonInteractable>> v_scenery;
     
     // Arrays for looping
-    std::string a_scenerySpritePaths[4] = { "../assets/Ang_Birds/bush.png", "../assets/Ang_Birds/bush.png", "../assets/Ang_Birds/bush.png", "../assets/Ang_Birds/bush.png"};
     float a_sceneryXPos[4] = { 10.0f, 350.0f, 800.0f, 660.0f };
 
     for (int i = 0; i < 3; i++)
     {
-        v_scenery.push_back(std::unique_ptr<NonInteractable>(new NonInteractable(a_scenerySpritePaths[i], a_sceneryXPos[i], 560.0f, 0.04f)));
+        v_scenery.push_back(std::unique_ptr<NonInteractable>(new NonInteractable("../assets/Ang_Birds/bush.png", a_sceneryXPos[i], 560.0f, 0.04f)));
     }
 
     ContactListener c;

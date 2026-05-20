@@ -1,10 +1,10 @@
 #pragma once
 #include "GameObject.h"
+#include "box2d/box2d.h"
 
-class DynamicObject : public virtual GameObject{ // Virtual to stop ambiguity for UI inheritance
+class DynamicObject : public virtual GameObject { // Virtual to stop ambiguity for UI inheritance
 protected:
 	//SFML variables
-	sf::Sprite sp_rendered;
 	sf::Texture sf_tex;
 
 	b2Body* b2_body;
@@ -30,7 +30,7 @@ public:
 	// Override the pure virtual functions from GameObject
 	void update() override
 	{
-		
+
 	}
 
 	void render(sf::RenderWindow& sf_window) override
@@ -52,7 +52,7 @@ public:
 
 		b2CircleShape b2_circle; // Shape of object (geometry to define collision boundaries)
 		b2_circle.m_radius = radius; // Set radius of the circle shape for the pig
-		
+
 		b2FixtureDef b2_bodyFixtureDef; // Fixture definition (attaches shape to body and adds friction, density and bounce)
 		b2_bodyFixtureDef.shape = &b2_circle; // Set the shape of the fixture to the circle
 		b2_bodyFixtureDef.density = 1.0f; // Set density
