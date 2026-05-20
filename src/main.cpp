@@ -9,6 +9,7 @@
 #include "NonInteractable.h"
 #include "ContactListener.h"
 #include "PigBuilder.h"
+#include "UIBuilder.h"
 
 // Upcasting function
 void listDynamics(DynamicObject* obj, std::string name)
@@ -176,11 +177,13 @@ int main() {
         std::cout << "Could not load font" << std::endl;
     }
 
-    sf::Text pigCountText;
-    pigCountText.setFont(font);
-    pigCountText.setCharacterSize(30);
-    pigCountText.setFillColor(sf::Color::White);
-    pigCountText.setPosition(10.0f, 10.0f);
+    sf::Text pigCountText = UIBuilder()
+        .setFont(font)
+        .setText("Pigs remaining: 3")
+        .setCharSize(30)
+        .setColour(sf::Color::White)
+        .setPosition(10.0f, 10.0f)
+        .build();
 
 
 
