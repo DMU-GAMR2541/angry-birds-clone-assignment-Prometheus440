@@ -3,10 +3,6 @@
 #include <iostream>
 
 class NonInteractable : public StaticObject {
-private:
-	sf::Sprite sp_rendered;
-	sf::Texture sf_tex;
-
 public:
 	// Constructor and destructor
 	NonInteractable(std::string texPath, float x, float y, float scaleFactor)

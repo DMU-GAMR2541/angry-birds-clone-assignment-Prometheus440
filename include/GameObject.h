@@ -4,6 +4,7 @@
 class GameObject {
 	public:
 		sf::Sprite sp_rendered;
+		sf::Texture sf_tex;
 		std::string str_path;
 
 	// Default constructor and destructor

@@ -1,10 +1,11 @@
 #include <gtest/gtest.h>
+#include <iostream>
 #include "Enemy.h"
 #include "Slingshot.h"
 #include "bird.h"
 #include "NonInteractable.h"
 
-// Bird movement tests
+// Bird tests
 class BirdTest : public testing::Test
 {
 public:
@@ -40,10 +41,23 @@ TEST_F(BirdTest, movementTest)
 
     // Check physics engine is working
     b2Vec2 b2_impulse(5.0f, -10.0f);
-    bird->getBody()->ApplyLinearImpulseToCenter(b2_impulse, true); // Apply an impulse to the bird
+    bird->getBody()->ApplyLinearImpulseToCenter(b2_impulse, true); // Apply an impulse to the bird body
     world->Step(1.0f/60.0f, 8, 3); // Advance all physics by one frame
-    float f_newX = bird->getSprite().getPosition().x * SCALE; // Check new position of sprite
-    EXPECT_GT(f_newX, 250.0f); // Check that bird has moved from set start point
+
+    // Check body and sprite are both the same
+    float f_bodyX = bird->getBody()->GetPosition().x * SCALE;
+    float f_bodyY = bird->getBody()->GetPosition().y * SCALE;
+    bird->setPosition(f_bodyX, f_bodyY); // Set the position of the sprite to the same as the body after impulse
+
+    EXPECT_GT(bird->getSprite().getPosition().x, 250.0f);
+}
+
+TEST_F(BirdTest, tectureLoadTest)
+{
+    // If texture doesn't load, it's dimensions will be 0
+    sf::Vector2 v_size = bird->getSprite().getTexture()->getSize();
+    EXPECT_GT(v_size.x, 0);
+    EXPECT_GT(v_size.y, 0);
 }
 
 
@@ -73,154 +87,3 @@ TEST_F(StaticObjectTest, staticObjectPosition)
     // Then test if sprite x position is at 350
     EXPECT_EQ(bush->getSprite().getPosition().x, 350.0f);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-////A single test, not a fixture. No setup is called.
-//TEST(Enemy, First_test) {
-///// <summary>
-/////Taken from the GoogleTest primer. 
-///// </summary>
-//
-//// The fixture for testing class Foo.
-//class EnemyTest : public testing::Test {
-//public:
-//    std::unique_ptr<Enemy> enemy;
-//    std::unique_ptr<Slingshot> slingshot;
-//
-//protected:
-//    // You can remove any or all of the following functions if their bodies would
-//    // be empty.
-//
-//    EnemyTest() {
-//        // You can do set-up work for each test here.
-//
-//    }
-//
-//    ~EnemyTest() override {
-//        // You can do clean-up work that doesn't throw exceptions here.
-//    }
-//
-//    // If the constructor and destructor are not enough for setting up
-//    // and cleaning up each test, you can define the following methods:
-//
-//    void SetUp() override {
-//        // Code here will be called immediately after the constructor (right
-//        // before each test).
-//        enemy = std::make_unique<Enemy>(50); // All enemnies in this test suite start with 50 HP.            
-//        slingshot = std::make_unique<Slingshot>(); // New slingshot for this test suite.
-//    }
-//
-//    void TearDown() override {
-//        // Code here will be called immediately after each test (right
-//        // before the destructor).
-//    }
-//
-//};
-//    Enemy e(100);
-//    EXPECT_GT(e.getHealth(), 99);
-//    SUCCEED() << "Test test passed";
-//    FAIL() << "Test didn't pass";
-//}
-
-//TEST_F(EnemyTest, LethalDamagePopsPig) {
-//    enemy->takeDamage(60);
-//    EXPECT_TRUE(enemy->checkIfPopped());
-//}
-//
-//TEST_F(EnemyTest, EnemyPosition) {
-//    Enemy e(50, 10.0f, 13.0f);
-//    vector<float> pos = e.locateEnemy();
-//
-//    EXPECT_EQ(pos[0], 10.0f);
-//    EXPECT_EQ(pos[1], 14.0f);
-//
-//    FAIL() << "Enemy is lost";
-//    SUCCEED() << "Enemy is found";
-//}
-//
-//TEST_F(EnemyTest, BirdTypeCheck)
-//{
-//    std::string str = "red";
-//    const char* c = str.c_str();
-//    ASSERT_STRCASEEQ("red", c);
-//    EXPECT_STRNE("red", c);
-//    EXPECT_STREQ("pink", c);
-//}
-//
-//TEST_F(EnemyTest, BirdTypeEnter)
-//{
-//    slingshot->changeBirdType();
-//    std::string str = "Green";
-//    const char* c = str.c_str();
-//    EXPECT_STRCASEEQ("Green", c);
-//    SUCCEED() << "Enemy type is now green";
-//}
-//
-//TEST_F(EnemyTest, EnemyHealthEnter)
-//{
-//    int i_prevHealth = enemy->getHealth();
-//    enemy->setHealth();
-//    EXPECT_TRUE(i_prevHealth < enemy->getHealth());
-//    FAIL() << "Enemy has taken damage";
-//    SUCCEED() << "Enemy has healed";
-//
-//}
-
-//// Parameterised tests
-//class ParamTest : public::testing::TestWithParam<int> {
-//protected:
-//    ParamTest() = default;
-//    ~ParamTest() = default;
-//
-//    void SetUp() override
-//    {
-//        // Code here will be called immediately after the constructor (right
-//        // before each test).
-//
-//    }
-//
-//    void TearDown() override
-//    {
-//
-//    }
-//};
-//
-//TEST_P(ParamTest, SimpleTest)
-//{
-//    int i_test = GetParam();
-//    std::cout << "Param value:: " << i_test << std::endl;
-//    EXPECT_GT(i_test, 1);
-//}
-//
-//INSTANTIATE_TEST_SUITE_P( Simple,ParamTest, ::testing::Values(1, 2, 3, 4, 5));
-//
-//// Test
-//int main(int argc, char** argv) {
-//    testing::InitGoogleTest(&argc, argv);
-//    return RUN_ALL_TESTS();
-//}
