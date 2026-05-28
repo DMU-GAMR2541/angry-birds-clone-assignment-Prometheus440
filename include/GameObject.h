@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+extern std::string str_destructorLog; // extern so that all 3 classes that make up bird all point to the same string
+
 class GameObject {
 	public:
 		sf::Sprite sp_rendered;
@@ -11,7 +13,10 @@ class GameObject {
 	GameObject() = default;
 
 	// Virtual destructor because polymorphism is being used
-	virtual ~GameObject() = default;
+	virtual ~GameObject()
+	{
+		str_destructorLog += "GameObject"; // Add each name to check the order
+	}
 
 	// Pure virtual functions to be implemented by derived classes
 	virtual void update() = 0;

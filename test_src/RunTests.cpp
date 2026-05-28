@@ -145,33 +145,14 @@ TEST_F(StaticObjectTest, staticObjectPosition)
 // Destructor tests
 std::string str_destructorLog = "";
 
-// Create a child of bird to test destructor
-class LoggedBird : public Bird
-{
-public:
-    // Constructor - inherited from bird
-    LoggedBird(std::string p, float x, float y, float s) : Bird(p, x, y, s)
-    {
-
-    }
-
-    // Destructor
-    ~LoggedBird() override
-    {
-        // When destructor is fired, add it to the string log
-        str_destructorLog = "LoggedBird";
-    }
-
-};
-
 TEST (DestructorTest, BirdDestructorTest)
 {
     str_destructorLog = "";
 
-    // Create the LoggedBird inside a scope to call the destructor before the EXPECT_EQ is called, not at the end of the test
+    // Create the bird inside a scope to call the destructor before the EXPECT_EQ is called, not at the end of the test
     {
-        LoggedBird bird("../assets/Ang_Birds/red.png", 0.0f, 0.0f, 0.025f);
+        Bird bird("../assets/Ang_Birds/red.png", 0.0f, 0.0f, 0.025f);
     }
 
-    EXPECT_EQ(str_destructorLog, "LoggedBird");
+    EXPECT_EQ(str_destructorLog, "BirdDynamicObjectGameObject"); // Check the order through the inheritance
 }

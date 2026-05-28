@@ -2,6 +2,8 @@
 #include "GameObject.h"
 #include "box2d/box2d.h"
 
+extern std::string str_destructorLog; // extern so that all 3 classes that make up bird all point to the same string
+
 class DynamicObject : public virtual GameObject { // Virtual to stop ambiguity for UI inheritance
 protected:
 	//SFML variables
@@ -27,6 +29,7 @@ public:
 	// Default destructor
 	~DynamicObject() override
 	{
+		str_destructorLog += "DynamicObject"; // Add each name to check the order
 	}
 
 	// Override the pure virtual functions from GameObject
