@@ -60,6 +60,23 @@ TEST_F(BirdMovementTest, textureLoadTest)
     EXPECT_GT(v_size.y, 0);
 }
 
+TEST_F(BirdMovementTest, relativePositionTest)
+{
+    // Create 3 bushes to use as a reference point
+    NonInteractable bush1("../assets/Ang_Birds/bush.png", 100.0f, 300.0f, 0.04f);
+    NonInteractable bush2("../assets/Ang_Birds/bush.png", 250.0f, 300.0f, 0.04f);
+    NonInteractable bush3("../assets/Ang_Birds/bush.png", 400.0f, 300.0f, 0.04f);
+
+    float f_birdX = bird->getSprite().getPosition().x; // Get x = 250.0f from bird SetUp()
+
+    // Bird is further right than bush1 : bird.x > bush1.x
+    // Bird is further at the same x as bush2 : bird.x = bush2.x
+    // Bird is further left than bush3 : bird.x < bush3.x
+    EXPECT_GT(f_birdX, bush1.getSprite().getPosition().x);
+    EXPECT_EQ(f_birdX, bush2.getSprite().getPosition().x);
+    EXPECT_LT(f_birdX, bush3.getSprite().getPosition().x);
+}
+
 
 
 
