@@ -6,7 +6,7 @@
 #include "NonInteractable.h"
 
 // Bird tests
-class BirdTest : public testing::Test
+class BirdTest : public testing::TestWithParam<std::pair<float, float>>
 {
 public:
     std::unique_ptr<Bird> bird;
@@ -52,7 +52,7 @@ TEST_F(BirdTest, movementTest)
     EXPECT_GT(bird->getSprite().getPosition().x, 250.0f);
 }
 
-TEST_F(BirdTest, tectureLoadTest)
+TEST_F(BirdTest, textureLoadTest)
 {
     // If texture doesn't load, it's dimensions will be 0
     sf::Vector2 v_size = bird->getSprite().getTexture()->getSize();
@@ -60,7 +60,29 @@ TEST_F(BirdTest, tectureLoadTest)
     EXPECT_GT(v_size.y, 0);
 }
 
+TEST_P(BirdTest, movementSpreadTest)
+{
+    // Set the values of the positions
+    std::pair<float, float> p_param = GetParam();
+    float x = p_param.first;
+    float y = p_param.second;
 
+    bird->setPosition(x, y);
+
+    sf::Vector2 v_spritePos = bird->getSprite().getPosition();
+    
+    // Testing setPosition() works across values 
+    EXPECT_EQ(v_spritePos.x, x);
+    EXPECT_EQ(v_spritePos.y, y);
+}
+
+INSTANTIATE_TEST_SUITE_P(MovementSpread, BirdTest, ::testing::Values(
+std::make_pair(0.0f, 0.0f),
+std::make_pair(100.0f, 200.0f),
+std::make_pair(250.0f, 300.0f),
+std::make_pair(500.0f, 400.0f),
+std::make_pair(800.0f, 600.0f)
+));
 
 
 
