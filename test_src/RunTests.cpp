@@ -5,8 +5,8 @@
 #include "bird.h"
 #include "NonInteractable.h"
 
-// Bird tests
-class BirdTest : public testing::TestWithParam<std::pair<float, float>>
+// Bird non-param tests
+class BirdMovementTest : public testing::Test
 {
 public:
     std::unique_ptr<Bird> bird;
@@ -27,7 +27,7 @@ protected:
     }
 };
 
-TEST_F(BirdTest, movementTest)
+TEST_F(BirdMovementTest, movementTest)
 {
     // In main.cpp, birds position is updated using the bird bodies and matching the sprites to that location
     // Using sprite location will say if the body is working
@@ -52,13 +52,39 @@ TEST_F(BirdTest, movementTest)
     EXPECT_GT(bird->getSprite().getPosition().x, 250.0f);
 }
 
-TEST_F(BirdTest, textureLoadTest)
+TEST_F(BirdMovementTest, textureLoadTest)
 {
     // If texture doesn't load, it's dimensions will be 0
     sf::Vector2 v_size = bird->getSprite().getTexture()->getSize();
     EXPECT_GT(v_size.x, 0);
     EXPECT_GT(v_size.y, 0);
 }
+
+
+
+
+
+// Bird param test
+class BirdTest : public testing::TestWithParam<std::pair<float, float>>
+{
+public:
+    std::unique_ptr<Bird> bird;
+    std::unique_ptr<b2World> world;
+
+    const float SCALE = 30.0f;
+
+protected:
+    void SetUp() override
+    {
+        bird = std::make_unique<Bird>("../assets/Ang_Birds/red.png", 250.0f, 300.0f, 0.025f);
+
+        // Make 2D body for the movement test
+        b2Vec2 gravity(0.0f, 9.8f);
+        world = std::make_unique<b2World>(gravity);
+
+        bird->box2DSetup(*world, 250.0f/SCALE, 300.0f/SCALE, 1.0f, 1.0f, 0.3f, 0.5f, 100);
+    }
+};
 
 TEST_P(BirdTest, movementSpreadTest)
 {
@@ -86,6 +112,8 @@ std::make_pair(800.0f, 600.0f)
 
 
 
+
+
 // StaticObject tests
 class StaticObjectTest : public testing::Test
 {
@@ -108,4 +136,42 @@ TEST_F(StaticObjectTest, staticObjectPosition)
 
     // Then test if sprite x position is at 350
     EXPECT_EQ(bush->getSprite().getPosition().x, 350.0f);
+}
+
+
+
+
+
+// Destructor tests
+std::string str_destructorLog = "";
+
+// Create a child of bird to test destructor
+class LoggedBird : public Bird
+{
+public:
+    // Constructor - inherited from bird
+    LoggedBird(std::string p, float x, float y, float s) : Bird(p, x, y, s)
+    {
+
+    }
+
+    // Destructor
+    ~LoggedBird() override
+    {
+        // When destructor is fired, add it to the string log
+        str_destructorLog = "LoggedBird";
+    }
+
+};
+
+TEST (DestructorTest, BirdDestructorTest)
+{
+    str_destructorLog = "";
+
+    // Create the LoggedBird inside a scope to call the destructor before the EXPECT_EQ is called, not at the end of the test
+    {
+        LoggedBird bird("../assets/Ang_Birds/red.png", 0.0f, 0.0f, 0.025f);
+    }
+
+    EXPECT_EQ(str_destructorLog, "LoggedBird");
 }

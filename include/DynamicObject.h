@@ -25,12 +25,13 @@ public:
 	}
 
 	// Default destructor
-	~DynamicObject() override = default;
+	~DynamicObject() override
+	{
+	}
 
 	// Override the pure virtual functions from GameObject
 	void update() override
 	{
-
 	}
 
 	void render(sf::RenderWindow& sf_window) override

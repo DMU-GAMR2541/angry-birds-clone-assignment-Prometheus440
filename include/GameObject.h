@@ -7,9 +7,11 @@ class GameObject {
 		sf::Texture sf_tex;
 		std::string str_path;
 
-	// Default constructor and destructor
+	// Default constructor
 	GameObject() = default;
-	virtual ~GameObject() = default; // Virtual desctructor because polymorphism is being used
+
+	// Virtual destructor because polymorphism is being used
+	virtual ~GameObject() = default;
 
 	// Pure virtual functions to be implemented by derived classes
 	virtual void update() = 0;

@@ -15,7 +15,6 @@ class Bird : public DynamicObject {
 		// Destructor
 		~Bird() override
 		{
-
 		}
 
 		void update() override
