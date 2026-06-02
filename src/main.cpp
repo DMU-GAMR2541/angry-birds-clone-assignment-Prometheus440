@@ -4,6 +4,7 @@
 #include <list>
 #include <thread>
 #include <chrono>
+#include <future>
 
 #include "Pig.h"
 #include "Bird.h"
@@ -44,11 +45,17 @@ void runLoadingScreen()
 {
     std::cout << "Loading..." << std::endl;
 
-    std::thread spriteThread(loadSprites);
-    std::thread physicsThread(loadPhysics);
+    //std::thread spriteThread(loadSprites);
+    //std::thread physicsThread(loadPhysics);
 
-    spriteThread.join();
-    physicsThread.join();
+    std::future<void> spriteFuture = std::async(std::launch::async, loadSprites);
+    std::future<void> physicsFuture = std::async(std::launch::async, loadPhysics);
+
+    //spriteThread.join();
+    //physicsThread.join();
+
+    spriteFuture.get();
+    physicsFuture.get();
 
     std::cout << "Finished loading" << std::endl;
 }
