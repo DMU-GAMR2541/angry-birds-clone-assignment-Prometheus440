@@ -2,6 +2,8 @@
 #include <box2d/box2d.h>
 #include <iostream>
 #include <list>
+#include <thread>
+#include <chrono>
 
 #include "Pig.h"
 #include "Bird.h"
@@ -11,6 +13,9 @@
 #include "PigBuilder.h"
 #include "UIBuilder.h"
 
+// === Unit tests ===
+std::string str_destructorLog = "";
+
 // Upcasting function
 void listDynamics(DynamicObject* obj, std::string name)
 {
@@ -18,7 +23,40 @@ void listDynamics(DynamicObject* obj, std::string name)
     std::cout << name << " has been upcast" << std::endl;
 }
 
-int main() {
+// Mulithreading task
+void loadSprites()
+{
+    for (int i = 0; i < 5; i++)
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    }
+}
+
+void loadPhysics()
+{
+    for (int i = 0; i < 5; i++)
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(700));
+    }
+}
+
+void runLoadingScreen()
+{
+    std::cout << "Loading..." << std::endl;
+
+    std::thread spriteThread(loadSprites);
+    std::thread physicsThread(loadPhysics);
+
+    spriteThread.join();
+    physicsThread.join();
+
+    std::cout << "Finished loading" << std::endl;
+}
+
+int main()
+{
+    runLoadingScreen();
+
     /*
     *       VARIABLES
     */

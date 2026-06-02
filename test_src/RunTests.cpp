@@ -158,7 +158,6 @@ TEST_F(StaticObjectTest, staticObjectPosition)
 
 
 
-
 // Destructor tests
 std::string str_destructorLog = "";
 
