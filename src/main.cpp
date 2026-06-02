@@ -5,6 +5,7 @@
 #include <thread>
 #include <chrono>
 #include <future>
+#include <mutex>
 
 #include "Pig.h"
 #include "Bird.h"
@@ -16,6 +17,10 @@
 
 // === Unit tests ===
 std::string str_destructorLog = "";
+
+// === Mutex ===
+std::mutex loadingMutex;
+int loadingProgress = 0;
 
 // Upcasting function
 void listDynamics(DynamicObject* obj, std::string name)
@@ -30,6 +35,11 @@ void loadSprites()
     for (int i = 0; i < 5; i++)
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
+        {
+            std::lock_guard<std::mutex> lock(loadingMutex);
+            loadingProgress += 10;
+        }
     }
 }
 
@@ -38,6 +48,11 @@ void loadPhysics()
     for (int i = 0; i < 5; i++)
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(700));
+        
+        {
+            std::lock_guard<std::mutex> lock(loadingMutex);
+            loadingProgress += 10;
+        }
     }
 }
 
@@ -51,11 +66,36 @@ void runLoadingScreen()
     std::future<void> spriteFuture = std::async(std::launch::async, loadSprites);
     std::future<void> physicsFuture = std::async(std::launch::async, loadPhysics);
 
+    int lastProg = -1;
+
+    while (true)
+    {
+        int prog;
+
+        {
+            std::lock_guard<std::mutex> lock(loadingMutex);
+            prog = loadingProgress;
+        }
+
+        if (prog != lastProg)
+        {
+            std::cout << "Progress: " << prog << "%" << std::endl;
+        }
+
+        if (prog >= 100)
+        {
+            break;
+        }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(200));
+    }
+
     //spriteThread.join();
     //physicsThread.join();
 
     spriteFuture.get();
     physicsFuture.get();
+
 
     std::cout << "Finished loading" << std::endl;
 }
