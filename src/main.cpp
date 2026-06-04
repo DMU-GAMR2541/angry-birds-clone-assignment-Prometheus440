@@ -14,6 +14,7 @@
 #include "ContactListener.h"
 #include "PigBuilder.h"
 #include "UIBuilder.h"
+#include "PigPool.h"
 
 // === Unit tests ===
 std::string str_destructorLog = "";
@@ -56,20 +57,58 @@ void loadPhysics()
     }
 }
 
+
 void runLoadingScreen()
 {
-    std::cout << "Loading..." << std::endl;
+    // === Loading screen ===
+    sf::RenderWindow loadingWindow(sf::VideoMode(800, 600), "Loading");
 
+    sf::Texture sf_loadingTexture;
+    sf::Sprite sp_loadingSprite;
+
+    if (!sf_loadingTexture.loadFromFile("../assets/Ang_Birds/LoadingScreen.png"))
+    {
+        std::cout << "Can't open loading screen" << std::endl;
+    }
+
+    sp_loadingSprite.setTexture(sf_loadingTexture);
+
+
+    // Font
+    sf::Font font;
+
+    if (!font.loadFromFile("../assets/fonts/angry-birds.ttf"))
+    {
+        std::cout << "Can't open loading screen font" << std::endl;
+    }
+
+    // Progress printing
+    sf::Text sf_progress;
+    sf_progress.setFont(font);
+    sf_progress.setCharacterSize(30);
+    sf_progress.setPosition(300.0f, 500.0f);
+
+    // Console printing
     //std::thread spriteThread(loadSprites);
     //std::thread physicsThread(loadPhysics);
 
     std::future<void> spriteFuture = std::async(std::launch::async, loadSprites);
     std::future<void> physicsFuture = std::async(std::launch::async, loadPhysics);
 
-    int lastProg = -1;
 
+    //Loading
     while (true)
     {
+        sf::Event event;
+
+        while (loadingWindow.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+            {
+                loadingWindow.close();
+            }
+        }
+
         int prog;
 
         {
@@ -77,17 +116,21 @@ void runLoadingScreen()
             prog = loadingProgress;
         }
 
-        if (prog != lastProg)
-        {
-            std::cout << "Progress: " << prog << "%" << std::endl;
-        }
+        sf_progress.setString("Loading... " + std::to_string(prog) + "%");
 
+        // Draw
+        loadingWindow.clear();
+        loadingWindow.draw(sp_loadingSprite);
+        loadingWindow.draw(sf_progress);
+
+        loadingWindow.display();
+
+        // Finished
         if (prog >= 100)
         {
             break;
         }
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(200));
     }
 
     //spriteThread.join();
@@ -96,8 +139,7 @@ void runLoadingScreen()
     spriteFuture.get();
     physicsFuture.get();
 
-
-    std::cout << "Finished loading" << std::endl;
+    loadingWindow.close();
 }
 
 int main()
@@ -116,6 +158,7 @@ int main()
 
     bool b_showScenery = false; // Default hide scenery
 
+
     // === Arrays ===
     std::string a_birdSpritePaths[3] = { "../assets/Ang_Birds/red.png", "../assets/Ang_Birds/yellow.png", "../assets/Ang_Birds/blue.png"};
     std::string a_pigSpritePaths[3] = { "../assets/Ang_Birds/pig.png", "../assets/Ang_Birds/pig_helmet.png", "../assets/Ang_Birds/pigKing.png"};
@@ -129,6 +172,13 @@ int main()
     b2Vec2 b2_gravity(0.0f, 9.8f); // Earth-like gravity
     b2World world(b2_gravity);
 
+
+
+    // === Pig pool ===
+    PigPool pigPool(3);
+
+
+
     // === Multimap ===
     std::multimap<std::string, std::unique_ptr<DynamicObject>> mm_dynamicObjects; //multimap, key is a string which looks for the type, the value is the unique pointer
     // Bird loop
@@ -139,15 +189,15 @@ int main()
     // Pig loop
     for (int i = 0; i < 3; i++)
     {
-        Pig* pig = PigBuilder()
-            .setSprite(a_pigSpritePaths[i], a_pigScales[i])
-            .setPosition(a_pigXPos[i], 300.0f)
-            .setHealth(1)
-            .setWorld(&world)
-            .build();
+        // Pig* pig = PigBuilder().setSprite(a_pigSpritePaths[i], a_pigScales[i]).setPosition(a_pigXPos[i], 300.0f).setHealth(1).setWorld(&world).build();
+        Pig* pig = pigPool.getPig();
 
-        mm_dynamicObjects.insert({"Pig", std::unique_ptr<DynamicObject>(pig)});
+        if (pig != nullptr)
+        {
+            mm_dynamicObjects.insert({"Pig", std::unique_ptr<DynamicObject>(pig)});
+        }
     }
+
 
 
     // === catapult ===
@@ -584,13 +634,15 @@ int main()
                 auto contacts = c.mm_contactPairs.equal_range(a_pigBodies[i]->GetFixtureList());
                 std::cout << "Pig " << a_pigBodies[i]->GetUserData().pointer << " was collided with" << std::endl;
                 
-                world.DestroyBody(a_pigBodies[i]); // Destroy that pigs body
+                // world.DestroyBody(a_pigBodies[i]); // Destroy that pigs body
 
                 auto pigIt = mm_dynamicObjects.find("Pig");
 
                 // Remove that sprite from multipmap
                 if (pigIt != mm_dynamicObjects.end())
                 {
+                    Pig* pig = dynamic_cast<Pig*>(pigIt->second.get());
+                    pigPool.releasePig(pig); // Pool removal
                     mm_dynamicObjects.erase(pigIt);
                 }
             }

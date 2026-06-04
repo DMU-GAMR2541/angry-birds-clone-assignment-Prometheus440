@@ -48,6 +48,9 @@
     <ClInclude Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\include\UIBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\PigPool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="D:\8 - Production Level C++\Labs\angry-birds-clone-assignment-Prometheus440\CMakeLists.txt" />
